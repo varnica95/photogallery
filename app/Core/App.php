@@ -70,8 +70,7 @@ class App
     {
         if (is_array($handler))
         {
-            if (! is_object($handler[0]))
-            {
+            if (! is_object($handler[0])) {
                 $handler[0] = new $handler[0];
             }
 

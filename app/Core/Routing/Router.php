@@ -2,8 +2,12 @@
 
 namespace App\Core\Routing;
 
+use App\Traits\Routing\RouteMatch;
+
 class Router
 {
+    use RouteMatch;
+
     /**
      * @var array
      */
@@ -45,6 +49,10 @@ class Router
 
     public function response()
     {
-        return $this->routes[$this->path];
+        if (! $route = $this->match($this->routes, $this->path)) {
+            dd('404');
+        }
+
+        return $this->routes[$route];
     }
 }
