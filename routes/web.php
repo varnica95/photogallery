@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-
-$app->get('/users/{id}', function ($id){
-    return $id;
-});
+use App\Http\Controllers\RegisterController;
 
 $app->get('/home', [HomeController::class, 'index']);
+
+$app->get('/register', [RegisterController::class, 'index']);

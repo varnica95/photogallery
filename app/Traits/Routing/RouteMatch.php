@@ -17,9 +17,8 @@ trait RouteMatch
 
             if (preg_match('/^' . $regex . '/', $path, $matched)){
                 $this->extractParametersFrom($matched);
+                return $route;
             }
-
-            return $route;
         }
 
         return false;

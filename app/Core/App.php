@@ -77,7 +77,8 @@ class App
             return call_user_func($handler, $this->item('request'));
         }
 
-        return $handler();
+        $parameters = array_values($this->item('request')->getRouteParameters());
+        return $handler(...$parameters);
     }
 
     /**

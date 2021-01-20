@@ -10,7 +10,7 @@ class Request
     /**
      * @var Container
      */
-    protected Container $container;
+    protected $container;
 
     /**
      * @var array
@@ -27,12 +27,23 @@ class Request
         $this->initialize();
     }
 
+    /**
+     *
+     */
     protected function initialize()
     {
         $this->parameters = new ParameterBag(
             $_POST,
-            $this->container->item('router')->getParameters()
+            $this->container->router->getParameters()
         );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRouteParameters()
+    {
+        return $this->parameters->getRouteParameters();
     }
 
     /**
