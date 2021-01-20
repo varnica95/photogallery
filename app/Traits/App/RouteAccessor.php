@@ -1,18 +1,18 @@
 <?php
 
 
-namespace App\Traits;
+namespace App\Traits\App;
 
 
 trait RouteAccessor
 {
     public function get($route, $handler)
     {
-        $this->getContainer()->router->setRoute($route, $handler, ['GET']);
+        $this->item('router')->setRoute($route, $handler, ['GET']);
     }
 
     public function post($route, $handler)
     {
-        $this->getContainer()->router->setRoute($route, $handler, ['POST']);
+        $this->item('router')->router->setRoute($route, $handler, ['POST']);
     }
 }
