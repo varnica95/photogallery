@@ -29,6 +29,14 @@ class Router
     protected $parameters;
 
     /**
+     * @return mixed
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
      * @param $route
      * @param $handler
      * @param $methods
