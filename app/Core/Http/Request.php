@@ -2,7 +2,50 @@
 
 namespace App\Core\Http;
 
+use App\Bags\ParameterBag;
+use App\Core\Container;
+
 class Request
 {
-    //
+    /**
+     * @var Container
+     */
+    protected Container $container;
+
+    /**
+     * @var array
+     */
+    protected $parameters = [];
+
+    /**
+     * Request constructor.
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+        $this->initialize();
+    }
+
+    protected function initialize()
+    {
+        $this->parameters = new ParameterBag(
+            $_POST,
+            $this->container->item('router')->getParameters()
+        );
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function __get(string $name)
+    {
+        return $this->parameters->get($name);
+    }
+
+    public function all()
+    {
+        return $this->parameters->getPostParameters();
+    }
 }
