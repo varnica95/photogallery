@@ -50,7 +50,7 @@ class Container
             return $this->cache[$name];
         }
 
-        $item = $this->items[$name]();
+        $item = $this->items[$name]($this);
         $this->cache[$name] = $item;
 
         return $item;

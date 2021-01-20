@@ -26,8 +26,8 @@ class App
             'router' => function(){
                 return new Router();
             },
-            'request' => function(){
-                return new Request();
+            'request' => function($container){
+                return new Request($container);
             }
         ]);
     }
