@@ -1,9 +1,5 @@
 <?php
 
-$app->get('/home', function (){
-    echo 'Home';
-});
+use App\Http\Controllers\HomeController;
 
-$app->post('/users', function (){
-    echo 'Users';
-});
+$app->get('/home', [HomeController::class, 'index']);
