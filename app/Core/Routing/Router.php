@@ -29,7 +29,7 @@ class Router
      * @param $handler
      * @param $methods
      */
-    public function setRoutes($route, $handler, $methods)
+    public function setRoute($route, $handler, $methods)
     {
         $this->routes[$route] = $handler;
         $this->methods[$route] = $methods;
@@ -41,5 +41,10 @@ class Router
     public function setPath($path = '/')
     {
         $this->path = $path;
+    }
+
+    public function response()
+    {
+        return $this->routes[$this->path];
     }
 }
