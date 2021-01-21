@@ -11,7 +11,7 @@ class View
      * @param $parameters
      * @return int
      */
-    public static function render($path, $parameters)
+    public static function render($path, $parameters = [])
     {
         $path = explode('.', $path);
 
