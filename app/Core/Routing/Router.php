@@ -55,13 +55,33 @@ class Router
         $this->path = $path;
     }
 
+    /**
+     * @return mixed
+     */
     public function response()
     {
         if (! $route = $this->match($this->routes, $this->path)) {
             dd('404');
         }
 
-        if (! in_array($_SERVER['REQUEST_METHOD'], $this->methods[$route])) {
+        return $this->resolve($route, $_SERVER['REQUEST_METHOD']);
+    }
+
+    /**
+     * @param $route
+     * @param $method
+     * @return mixed
+     */
+    protected function resolve($route, $method)
+    {
+        if ($method === 'POST') {
+            $cache = $this->routes[$route];
+            $cache[1] = 'store';
+
+            return $cache;
+        }
+
+        if (! in_array($method, $this->methods[$route])) {
             dd('Unauthorized');
         }
 
