@@ -12,5 +12,8 @@ return [
         'root' => __DIR__ . '/resources/views/layouts/app.phtml',
         'namespace' => __DIR__ . '/resources/views/',
         'extension' => '.phtml'
+    ],
+    'middleware' => [
+        'namespace' => 'App\\Middlewares\\'
     ]
 ];
