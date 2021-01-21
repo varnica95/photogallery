@@ -4,6 +4,7 @@ namespace App\Core\Http;
 
 use App\Bags\ParameterBag;
 use App\Core\Container;
+use App\Core\Session;
 use App\Core\Validation\Validator;
 use App\Core\View;
 use App\Maps\ControllerMap;
@@ -92,5 +93,32 @@ class Request
         }
 
         return $data;
+    }
+
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function setSession($name, $value)
+    {
+        Session::set($name, $value);
+    }
+
+    /**
+     * @param $name
+     * @return mixed|null
+     */
+    public function getSession($name)
+    {
+        return Session::get($name);
+    }
+
+    /**
+     * @param string $path
+     */
+    public function redirect(string $path)
+    {
+        header('Location: /' . $path, true);
+        exit();
     }
 }
