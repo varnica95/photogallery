@@ -6,9 +6,6 @@ namespace App\Core\Validation;
 
 use App\Bags\ErrorBag;
 use App\Maps\RuleMap;
-use App\Rules\EmailRule;
-use App\Rules\MaxRule;
-use App\Rules\RequiredRule;
 
 class Validator
 {
@@ -26,12 +23,6 @@ class Validator
      * @var ErrorBag
      */
     protected $errors;
-
-    protected $ruleMap = [
-        'required' => RequiredRule::class,
-        'email' => EmailRule::class,
-        'max' => MaxRule::class
-    ];
 
     /**
      * Validator constructor.
@@ -114,12 +105,9 @@ class Validator
      */
     private function extractRuleFromString(string $rule)
     {
-        $exploded = explode(':', $rule);
-        $rule = $exploded[0];
-        $options = explode(',', end($exploded));
-
         return $this->extractRuleFromMap(
-            $rule, $options
+            ($exploded = explode(':', $rule))[0],
+            explode(',', end($exploded))
         );
     }
 
