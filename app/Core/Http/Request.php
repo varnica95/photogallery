@@ -73,7 +73,7 @@ class Request
         $validator->setRules($rules);
 
         $validator->setAliases([
-            'name' => 'Name'
+            //
         ]);
 
         if (! $validator->validate()) {
@@ -81,10 +81,16 @@ class Request
                 ControllerMap::resolve(debug_backtrace()[1]['class']) . '.index',
                 $validator->getErrors()
             );
-            dump($validator->getErrors());
+
             die();
         }
 
-        return $this->all();
+        $data = $this->all();
+
+        if (isset($data['password_again'])){
+            unset($data['password_again']);
+        }
+
+        return $data;
     }
 }
