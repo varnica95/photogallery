@@ -10,7 +10,7 @@ return [
     ],
     'views' => [
         'root' => __DIR__ . '/resources/views/layouts/app.phtml',
-        'namespace' => __DIR__ . '/resources/views/',
+        'directory' => __DIR__ . '/resources/views/',
         'extension' => '.phtml'
     ],
     'middleware' => [

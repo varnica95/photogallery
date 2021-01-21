@@ -40,15 +40,15 @@ class View
      */
     protected static function file($path)
     {
-        return self::namespace() . implode('/', $path) . self::extension();
+        return self::directory() . implode('/', $path) . self::extension();
     }
 
     /**
      * @return string
      */
-    protected static function namespace()
+    protected static function directory()
     {
-        return Config::env('views.namespace');
+        return Config::env('views.directory');
     }
 
     /**
