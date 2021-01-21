@@ -5,8 +5,7 @@ namespace App\Core\Http;
 use App\Bags\ParameterBag;
 use App\Core\Container;
 use App\Core\Validation\Validator;
-use App\Rules\EmailRule;
-use App\Rules\RequiredRule;
+use App\Core\View;
 
 class Request
 {
@@ -58,6 +57,9 @@ class Request
         return $this->parameters->get($name);
     }
 
+    /**
+     * @return mixed
+     */
     public function all()
     {
         return $this->parameters->getPostParameters();
@@ -65,18 +67,16 @@ class Request
 
     public function validate(array $rules)
     {
-        $validator = new Validator([
-            'name' => '',
-            'email' => ''
-        ]);
+        $validator = new Validator($this->all());
 
-        $validator->setRules([
-            'name' => ['required', 'between:5,10'],
-            'email' => ['required', 'email']
+        $validator->setRules($rules);
+
+        $validator->setAliases([
+            'name' => 'Name'
         ]);
 
         if (! $validator->validate()) {
-            dump($validator->getErrors());
+            View::render('register.index', $validator->getErrors());
         }else{
             dump('Success');
         }
