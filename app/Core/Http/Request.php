@@ -119,6 +119,6 @@ class Request
     public function redirect(string $path)
     {
         header('Location: /' . $path, true);
-        exit();
+        exit;
     }
 }
