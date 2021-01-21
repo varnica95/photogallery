@@ -111,6 +111,11 @@ class Validator
         );
     }
 
+    /**
+     * @param $rule
+     * @param $options
+     * @return mixed
+     */
     private function extractRuleFromMap($rule, $options)
     {
         return RuleMap::resolve($rule, $options);
