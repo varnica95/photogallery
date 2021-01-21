@@ -58,6 +58,15 @@ class Router
     /**
      * @return mixed
      */
+    public function getLastInsertedRoute()
+    {
+        $routes = array_keys($this->routes);
+        return end($routes);
+    }
+
+    /**
+     * @return mixed
+     */
     public function response()
     {
         if (! $route = $this->match($this->routes, $this->path)) {
