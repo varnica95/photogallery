@@ -92,7 +92,9 @@ class Model
             return false;
         }
 
-        return true;
+        unset($user->password);
+
+        return $user;
     }
 
     /**
