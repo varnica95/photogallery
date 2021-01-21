@@ -79,6 +79,10 @@ class Request
             ]
         ]);
 
-        $validator->validate();
+        if (! $validator->validate()) {
+            dump($validator->getErrors());
+        }else{
+            dump('Success');
+        }
     }
 }
