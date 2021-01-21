@@ -6,8 +6,14 @@ namespace App\Core;
 
 class Config
 {
+    /**
+     * @var
+     */
     protected static $file;
 
+    /**
+     * @return mixed
+     */
     protected static function getFile()
     {
         $filePath = __DIR__ . '/../../env.php';
@@ -20,6 +26,10 @@ class Config
         return self::$file = include $filePath;
     }
 
+    /**
+     * @param string $path
+     * @return mixed
+     */
     public static function env(string $path)
     {
         $exploded = explode('.', $path);

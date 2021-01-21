@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'database' => [
+    'db' => [
         'driver' => 'mysql',
         'host' => 'localhost',
         'name' => 'gallery',
