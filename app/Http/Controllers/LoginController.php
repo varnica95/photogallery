@@ -35,5 +35,8 @@ class LoginController extends Controller
                 'error' => 'The password you entered is not correct.'
             ]);
         }
+
+        $request->setSession('id', $user->id);
+        $request->redirect('home');
     }
 }

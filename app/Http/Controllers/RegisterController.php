@@ -30,5 +30,10 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create($data);
+
+        if (isset($user)) {
+            $request->setSession('id', $user->id);
+            $request->redirect('home');
+        }
     }
 }
