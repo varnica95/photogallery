@@ -4,6 +4,8 @@
 namespace App\Core\Validation;
 
 
+use App\Bags\ErrorBag;
+
 class Validator
 {
     /**
@@ -17,12 +19,18 @@ class Validator
     protected $rules = [];
 
     /**
+     * @var ErrorBag
+     */
+    protected $errors;
+
+    /**
      * Validator constructor.
      * @param array $data
      */
     public function __construct(array $data)
     {
         $this->data = $data;
+        $this->errors = new ErrorBag();
     }
 
     /**
@@ -40,14 +48,24 @@ class Validator
                 $this->validateRule($field, $rule);
             }
         }
+
+        return ! $this->errors->has();
     }
 
     private function validateRule($field, Rule $rule)
     {
         if (! $rule->passes($field, $this->getValueFrom($this->data, $field), $this->data))
         {
-            dump($rule->message($field));
+            $this->errors->add($field, $rule->message($field));
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->errors->getErrors();
     }
 
     /**
