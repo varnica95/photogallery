@@ -5,12 +5,14 @@ namespace App\Core;
 
 
 use App\Core\Http\Request;
+use App\Core\Middleware\RootMiddleware;
 use App\Core\Routing\Router;
 use App\Traits\App\MethodAccessor;
+use App\Traits\App\MiddlewareHandler;
 
 class App
 {
-    use MethodAccessor;
+    use MethodAccessor, MiddlewareHandler;
 
     /**
      * @var Container
@@ -28,6 +30,9 @@ class App
             },
             'request' => function($container){
                 return new Request($container);
+            },
+            'middleware' => function(){
+                return new RootMiddleware();
             }
         ]);
     }
@@ -74,7 +79,10 @@ class App
                 $handler[0] = new $handler[0];
             }
 
-            return call_user_func($handler, $this->item('request'));
+            $middleware = $this->item('middleware');
+            $request = $middleware->handle($this->item('request'));
+
+            return call_user_func($handler, $request);
         }
 
         $parameters = array_values($this->item('request')->getRouteParameters());
