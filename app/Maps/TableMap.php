@@ -28,6 +28,10 @@ class TableMap
         }
     }
 
+    /**
+     * @param $table
+     * @return string|null
+     */
     public static function getClass($table)
     {
         return self::$map[$table] ?? null;
