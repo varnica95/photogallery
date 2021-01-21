@@ -9,8 +9,14 @@ use PDO;
 
 class Model
 {
+    /**
+     * @var
+     */
     protected static $connection;
 
+    /**
+     * @return PDO
+     */
     protected static function connection()
     {
         return Database::getInstance()->testConnection();
@@ -44,6 +50,13 @@ class Model
         return self::getLastInsertedRow($table, self::connection()->lastInsertId());
     }
 
+    /**
+     * @param $fields
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return mixed
+     */
     public static function get($fields, $table, $field, $value)
     {
         self::$connection = self::connection();
@@ -52,14 +65,42 @@ class Model
             $fields = implode(', ', $fields);
         }
 
-        $sql = 'SELECT ' . $fields . ' FROM ' . $table . ' WHERE ' . $field . ' = ' . $value;
+        $sql = "SELECT {$fields} FROM {$table} WHERE {$field} = '$value'";
         $statement = self::$connection->query($sql);
 
         $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
 
-        return $statement->fetchAll();
+        return $statement->fetch();
     }
 
+    public static function login(array $data)
+    {
+        self::$connection = self::connection();
+
+        $sql = "SELECT * FROM users WHERE username = '{$data['username']}'";
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass('users'));
+
+        $user = $statement->fetch();
+
+        if (empty($user)){
+            return null;
+        }
+
+        if (! password_verify($data['password'], $user->password)){
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $field
+     * @param $table
+     * @param $value
+     * @return mixed
+     */
     public static function validate($field, $table, $value)
     {
         self::$connection = self::connection();

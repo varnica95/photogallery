@@ -23,5 +23,17 @@ class LoginController extends Controller
         ]);
 
         $user = User::login($data);
+
+        if (is_null($user)){
+            $this->view('login.index', [
+                'error' => 'Username does not exist.'
+            ]);
+        }
+
+        if (! $user){
+            $this->view('login.index', [
+                'error' => 'The password you entered is not correct.'
+            ]);
+        }
     }
 }
