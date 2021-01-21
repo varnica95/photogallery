@@ -11,7 +11,6 @@ class RegisterController extends Controller
 {
     public function index(Request $request)
     {
-        dump($request->all());
         $this->view('register.index');
     }
 }

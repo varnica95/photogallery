@@ -2,11 +2,11 @@
 
 namespace App\Core\Routing;
 
-use App\Traits\Routing\RouteMatch;
+use App\Traits\Routing\RouteMatcher;
 
 class Router
 {
-    use RouteMatch;
+    use RouteMatcher;
 
     /**
      * @var array
@@ -59,6 +59,10 @@ class Router
     {
         if (! $route = $this->match($this->routes, $this->path)) {
             dd('404');
+        }
+
+        if (! in_array($_SERVER['REQUEST_METHOD'], $this->methods[$route])) {
+            dd('Unauthorized');
         }
 
         return $this->routes[$route];

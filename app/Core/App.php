@@ -6,11 +6,11 @@ namespace App\Core;
 
 use App\Core\Http\Request;
 use App\Core\Routing\Router;
-use App\Traits\App\RouteAccessor;
+use App\Traits\App\MethodAccessor;
 
 class App
 {
-    use RouteAccessor;
+    use MethodAccessor;
 
     /**
      * @var Container
@@ -54,7 +54,7 @@ class App
      */
     public function run()
     {
-        $router = $this->getContainer()->router;
+        $router = $this->item('router');
         $router->setPath($_SERVER['PATH_INFO'] ?? '/home');
 
         $response = $router->response();
