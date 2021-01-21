@@ -26,7 +26,7 @@ class RuleMap
         'between' => BetweenRule::class,
         'name' => NameRule::class,
         'same_as' => SameAsRule::class,
-        'unique' => UniqueRule::class
+        'unique' => UniqueRule::class,
     ];
 
     public static function resolve($rule, $options)
