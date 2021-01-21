@@ -71,7 +71,7 @@ class Request
         ]);
 
         $validator->setRules([
-            'name' => ['required'],
+            'name' => ['required', 'between:5,10'],
             'email' => ['required', 'email']
         ]);
 
