@@ -31,7 +31,7 @@ class View
      */
     protected static function root()
     {
-        return self::namespace() . '/layouts/app' . self::extension();
+        return Config::env('views.root');
     }
 
     /**
@@ -48,7 +48,7 @@ class View
      */
     protected static function namespace()
     {
-        return __DIR__ . '/../../resources/views/';
+        return Config::env('views.namespace');
     }
 
     /**
@@ -56,6 +56,6 @@ class View
      */
     protected static function extension()
     {
-        return '.phtml';
+        return Config::env('views.extension');
     }
 }
