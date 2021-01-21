@@ -6,6 +6,7 @@ use App\Bags\ParameterBag;
 use App\Core\Container;
 use App\Core\Validation\Validator;
 use App\Core\View;
+use App\Maps\ControllerMap;
 
 class Request
 {
@@ -76,9 +77,14 @@ class Request
         ]);
 
         if (! $validator->validate()) {
-            View::render('register.index', $validator->getErrors());
-        }else{
-            dump('Success');
+            View::render(
+                ControllerMap::resolve(debug_backtrace()[1]['class']) . '.index',
+                $validator->getErrors()
+            );
+
+            die();
         }
+
+        return $this->all();
     }
 }
