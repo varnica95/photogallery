@@ -1,8 +1,11 @@
 <?php
 
 use App\Core\App;
+use App\Core\Session;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+Session::start();
 
 $app = new App();
 

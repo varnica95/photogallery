@@ -53,7 +53,7 @@ class Session
      * @param $name
      * @return bool
      */
-    public static function has($name)
+    private static function has($name)
     {
         return isset($_SESSION[$name]);
     }
