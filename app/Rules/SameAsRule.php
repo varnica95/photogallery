@@ -8,8 +8,15 @@ use App\Core\Validation\Rule;
 
 class SameAsRule extends Rule
 {
+    /**
+     * @var
+     */
     protected $field;
 
+    /**
+     * SameAsRule constructor.
+     * @param $field
+     */
     public function __construct($field)
     {
         $this->field = $field;

@@ -11,6 +11,7 @@ use App\Rules\MinRule;
 use App\Rules\NameRule;
 use App\Rules\RequiredRule;
 use App\Rules\SameAsRule;
+use App\Rules\UniqueRule;
 
 class RuleMap
 {
@@ -25,6 +26,7 @@ class RuleMap
         'between' => BetweenRule::class,
         'name' => NameRule::class,
         'same_as' => SameAsRule::class,
+        'unique' => UniqueRule::class
     ];
 
     public static function resolve($rule, $options)
