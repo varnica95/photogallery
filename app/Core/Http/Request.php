@@ -71,12 +71,8 @@ class Request
         ]);
 
         $validator->setRules([
-            'name' => [
-                new RequiredRule()
-            ],
-            'email' => [
-                new RequiredRule(), new EmailRule()
-            ]
+            'name' => ['required'],
+            'email' => ['required', 'email']
         ]);
 
         if (! $validator->validate()) {
