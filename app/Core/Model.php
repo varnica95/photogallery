@@ -66,7 +66,7 @@ class Model
 
         $sql = "SELECT {$field} FROM {$table} WHERE {$field} = '$value'";
         $statement = self::$connection->query($sql);
-        dump($sql);
+
         return $statement->fetch();
     }
 
