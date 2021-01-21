@@ -4,6 +4,7 @@ namespace App\Core\Http;
 
 use App\Bags\ParameterBag;
 use App\Core\Container;
+use App\Core\Validation\Validator;
 
 class Request
 {
@@ -58,5 +59,10 @@ class Request
     public function all()
     {
         return $this->parameters->getPostParameters();
+    }
+
+    public function validate(array $rules)
+    {
+        $validator = new Validator($this->all());
     }
 }
