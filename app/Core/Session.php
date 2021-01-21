@@ -31,10 +31,16 @@ class Session
      */
     public static function set($name, $value)
     {
-        if (self::has($name)){
-            return;
+        if (! self::has($name)){
+            $_SESSION[$name] = $value;
         }
-        $_SESSION[$name] = $value;
+    }
+
+    public static function unset($name)
+    {
+        if (self::has($name)){
+            unset($_SESSION[$name]);
+        }
     }
 
     /**
