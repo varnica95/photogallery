@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
+use App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -20,10 +21,14 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email'
+            'first_name' => 'required|name',
+            'last_name' => 'required|name',
+            'username' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:5|same_as:password_again',
+            'password_again' => 'required',
         ]);
 
-        dump($data);
+        $user = User::create($data);
     }
 }

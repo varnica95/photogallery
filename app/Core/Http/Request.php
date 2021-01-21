@@ -81,7 +81,7 @@ class Request
                 ControllerMap::resolve(debug_backtrace()[1]['class']) . '.index',
                 $validator->getErrors()
             );
-
+            dump($validator->getErrors());
             die();
         }
 
