@@ -2,7 +2,7 @@
 
 namespace App\Traits\Routing;
 
-trait RouteMatch
+trait RouteMatcher
 {
     /**
      * @param $routes

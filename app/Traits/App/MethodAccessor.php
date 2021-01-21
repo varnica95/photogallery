@@ -4,7 +4,7 @@
 namespace App\Traits\App;
 
 
-trait RouteAccessor
+trait MethodAccessor
 {
     public function get($route, $handler)
     {
@@ -13,6 +13,6 @@ trait RouteAccessor
 
     public function post($route, $handler)
     {
-        $this->item('router')->router->setRoute($route, $handler, ['POST']);
+        $this->item('router')->setRoute($route, $handler, ['POST']);
     }
 }
