@@ -24,10 +24,10 @@ class RootMiddleware
     }
 
     /**
-     * @param Middleware $middleware
+     * @param $middleware
      * @param $route
      */
-    public function add(Middleware $middleware, $route)
+    public function add($middleware, $route)
     {
         $next = $this->root;
         $this->root = function (Request $request) use ($middleware, $next, $route){
