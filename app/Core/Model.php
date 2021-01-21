@@ -44,6 +44,32 @@ class Model
         return self::getLastInsertedRow($table, self::connection()->lastInsertId());
     }
 
+    public static function get($fields, $table, $field, $value)
+    {
+        self::$connection = self::connection();
+
+        if (is_array($fields) && count($fields) > 1){
+            $fields = implode(', ', $fields);
+        }
+
+        $sql = 'SELECT ' . $fields . ' FROM ' . $table . ' WHERE ' . $field . ' = ' . $value;
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
+
+        return $statement->fetchAll();
+    }
+
+    public static function validate($field, $table, $value)
+    {
+        self::$connection = self::connection();
+
+        $sql = "SELECT {$field} FROM {$table} WHERE {$field} = '$value'";
+        $statement = self::$connection->query($sql);
+        dump($sql);
+        return $statement->fetch();
+    }
+
     /**
      * @param $table
      * @param $id
