@@ -5,7 +5,9 @@ namespace App\Core\Validation;
 
 
 use App\Bags\ErrorBag;
+use App\Maps\RuleMap;
 use App\Rules\EmailRule;
+use App\Rules\MaxRule;
 use App\Rules\RequiredRule;
 
 class Validator
@@ -28,6 +30,7 @@ class Validator
     protected $ruleMap = [
         'required' => RequiredRule::class,
         'email' => EmailRule::class,
+        'max' => MaxRule::class
     ];
 
     /**
@@ -98,7 +101,7 @@ class Validator
     {
         return array_map(function ($rule){
             if (is_string($rule)){
-                return $this->extractRuleFromMap($rule);
+                return $this->extractRuleFromString($rule);
             }
 
             return $rule;
@@ -109,9 +112,20 @@ class Validator
      * @param string $rule
      * @return mixed|null
      */
-    private function extractRuleFromMap(string $rule)
+    private function extractRuleFromString(string $rule)
     {
-        return new $this->ruleMap[$rule] ?? null;
+        $exploded = explode(':', $rule);
+        $rule = $exploded[0];
+        $options = explode(',', end($exploded));
+
+        return $this->extractRuleFromMap(
+            $rule, $options
+        );
+    }
+
+    private function extractRuleFromMap($rule, $options)
+    {
+        return RuleMap::resolve($rule, $options);
     }
 
     /**
