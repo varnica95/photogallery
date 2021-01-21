@@ -17,7 +17,7 @@ class ErrorBag
      */
     public function add($field, $message)
     {
-        $this->errors[$field][] = $message;
+        $this->errors[] = $message;
     }
 
     /**
@@ -25,7 +25,9 @@ class ErrorBag
      */
     public function getErrors()
     {
-        return $this->errors;
+        return [
+            'errors' => $this->errors
+        ];
     }
 
     /**

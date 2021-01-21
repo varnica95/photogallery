@@ -5,6 +5,11 @@
         <input type="text" name="email">
 
         <input type="submit" value="Send">
-        
+
+        <?php if(isset($errors)): ?>
+            <?php foreach ($errors as $error): ?>
+                <label><?php dump($error); ?></label>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </form>
 </div>
