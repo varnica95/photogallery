@@ -5,6 +5,8 @@ namespace App\Core\Validation;
 
 
 use App\Bags\ErrorBag;
+use App\Rules\EmailRule;
+use App\Rules\RequiredRule;
 
 class Validator
 {
@@ -22,6 +24,11 @@ class Validator
      * @var ErrorBag
      */
     protected $errors;
+
+    protected $ruleMap = [
+        'required' => RequiredRule::class,
+        'email' => EmailRule::class,
+    ];
 
     /**
      * Validator constructor.
@@ -41,10 +48,15 @@ class Validator
         $this->rules = $rules;
     }
 
+    /**
+     * @return bool
+     */
     public function validate()
     {
         foreach ($this->rules as $field => $rules) {
-            foreach ($rules as $rule) {
+            $resolved = $this->resolveRules($this->extractRulesFromString($rules));
+
+            foreach ($resolved as $rule) {
                 $this->validateRule($field, $rule);
             }
         }
@@ -76,5 +88,38 @@ class Validator
     private function getValueFrom($data, $field)
     {
         return $data[$field] ?? null;
+    }
+
+    /**
+     * @param array $rules
+     * @return array|null[]
+     */
+    private function resolveRules(array $rules)
+    {
+        return array_map(function ($rule){
+            if (is_string($rule)){
+                return $this->extractRuleFromMap($rule);
+            }
+
+            return $rule;
+        }, $rules);
+    }
+
+    /**
+     * @param string $rule
+     * @return mixed|null
+     */
+    private function extractRuleFromMap(string $rule)
+    {
+        return new $this->ruleMap[$rule] ?? null;
+    }
+
+    /**
+     * @param $rules
+     * @return false|mixed|string[]
+     */
+    private function extractRulesFromString($rules)
+    {
+        return is_string($rules) ? explode('|', $rules) : $rules;
     }
 }
