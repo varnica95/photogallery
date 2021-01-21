@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
-$app->get('/home', [HomeController::class, 'index']);
+$app->get('/home', [HomeController::class, 'index'])->middleware('auth');
 
 $app->post('/register', [RegisterController::class, 'store']);
 $app->get('/register', [RegisterController::class, 'index']);
