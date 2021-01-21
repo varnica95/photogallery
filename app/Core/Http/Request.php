@@ -5,6 +5,8 @@ namespace App\Core\Http;
 use App\Bags\ParameterBag;
 use App\Core\Container;
 use App\Core\Validation\Validator;
+use App\Rules\EmailRule;
+use App\Rules\RequiredRule;
 
 class Request
 {
@@ -69,7 +71,12 @@ class Request
         ]);
 
         $validator->setRules([
-            //
+            'name' => [
+                new RequiredRule()
+            ],
+            'email' => [
+                new RequiredRule(), new EmailRule()
+            ]
         ]);
 
         $validator->validate();
