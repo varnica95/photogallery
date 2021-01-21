@@ -63,6 +63,15 @@ class Request
 
     public function validate(array $rules)
     {
-        $validator = new Validator($this->all());
+        $validator = new Validator([
+            'name' => '',
+            'email' => ''
+        ]);
+
+        $validator->setRules([
+            //
+        ]);
+
+        $validator->validate();
     }
 }

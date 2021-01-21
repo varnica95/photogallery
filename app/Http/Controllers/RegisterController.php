@@ -19,6 +19,8 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        dump($request->all());
+        $request->validate([
+            'name' => 'dummy'
+        ]);
     }
 }
