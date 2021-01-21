@@ -20,6 +20,11 @@ class Validator
     protected $rules = [];
 
     /**
+     * @var array
+     */
+    protected $aliases = [];
+
+    /**
      * @var ErrorBag
      */
     protected $errors;
@@ -43,6 +48,14 @@ class Validator
     }
 
     /**
+     * @param array $aliases
+     */
+    public function setAliases(array $aliases)
+    {
+        $this->aliases = $aliases;
+    }
+
+    /**
      * @return bool
      */
     public function validate()
@@ -62,8 +75,13 @@ class Validator
     {
         if (! $rule->passes($field, $this->getValueFrom($this->data, $field), $this->data))
         {
-            $this->errors->add($field, $rule->message($field));
+            $this->errors->add($field, $rule->message($this->alias($field)));
         }
+    }
+
+    private function alias($field)
+    {
+        return $this->aliases[$field] ?? $field;
     }
 
     /**
