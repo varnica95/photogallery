@@ -41,6 +41,6 @@ class ImageRule extends Rule
      */
     public function message($field)
     {
-        return $field . ' is not a valid image.';
+        return $field . ' is not a valid type.';
     }
 }
