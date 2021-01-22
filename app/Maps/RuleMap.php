@@ -6,6 +6,7 @@ namespace App\Maps;
 
 use App\Rules\BetweenRule;
 use App\Rules\EmailRule;
+use App\Rules\ImageRule;
 use App\Rules\MaxRule;
 use App\Rules\MinRule;
 use App\Rules\NameRule;
@@ -29,6 +30,7 @@ class RuleMap
         'same_as' => SameAsRule::class,
         'unique' => UniqueRule::class,
         'optional' => OptionalRule::class,
+        'image' => ImageRule::class,
     ];
 
     public static function resolve($rule, $options)

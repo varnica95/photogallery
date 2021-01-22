@@ -21,9 +21,10 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-       $request->validate([
-           'title' => ['required', 'min:5'],
-           'description' => ['required', 'optional', 'max:200']
+        $request->validate([
+            'title' => ['required', 'min:5'],
+            'description' => ['required', 'optional', 'max:200'],
+            'image' => ['image']
        ]);
     }
 }
