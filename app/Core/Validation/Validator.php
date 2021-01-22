@@ -103,6 +103,7 @@ class Validator
     private function validateRule($field, Rule $rule, bool $optional = false)
     {
         foreach ($this->getMatchingData($field) as $matchingDatum) {
+
             if (empty($value = $this->getValueFrom($this->data, $matchingDatum)) && $optional){
                 continue;
             }
