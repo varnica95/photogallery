@@ -19,7 +19,7 @@ CREATE TABLE galleries
     user_id     INT NOT NULL,
     title       VARCHAR(100) NOT NULL,
     description LONGTEXT DEFAULT NULL,
-    image       INT DEFAULT NULL,
+    image       LONGTEXT DEFAULT NULL,
 
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES gallery.users(id) ON DELETE CASCADE
