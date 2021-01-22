@@ -6,6 +6,7 @@ namespace App\Core\Validation;
 
 use App\Bags\ErrorBag;
 use App\Maps\RuleMap;
+use App\Rules\OptionalRule;
 
 class Validator
 {
@@ -64,16 +65,31 @@ class Validator
             $resolved = $this->resolveRules($this->extractRulesFromString($rules));
 
             foreach ($resolved as $rule) {
-                $this->validateRule($field, $rule);
+                $this->validateRule($field, $rule, $this->resolvedRulesContainOptional($resolved));
             }
         }
 
         return ! $this->errors->has();
     }
 
-    private function validateRule($field, Rule $rule)
+    protected function resolvedRulesContainOptional(array $rules)
     {
-        if (! $rule->passes($field, $this->getValueFrom($this->data, $field), $this->data))
+        foreach ($rules as $rule) {
+            if ($rule instanceof OptionalRule){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function validateRule($field, Rule $rule, bool $optional = false)
+    {
+        if (empty($value = $this->getValueFrom($this->data, $field)) && $optional){
+            return;
+        }
+
+        if (! $rule->passes($field, $value, $this->data))
         {
             $this->errors->add($field, $rule->message($this->alias($field)));
         }
