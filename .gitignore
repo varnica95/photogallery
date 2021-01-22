@@ -1,3 +1,5 @@
 # These files will be ignored
 
 ./.idea
+
+./env.php
