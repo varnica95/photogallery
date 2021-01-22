@@ -16,7 +16,7 @@ class Config
      */
     protected static function getFile()
     {
-        $filePath = __DIR__ . '/../../env.php';
+        $filePath = __DIR__ . '/../../../env.php';
 
         if (! self::exists($filePath)){
             dump('env not found');

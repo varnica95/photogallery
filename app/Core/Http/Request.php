@@ -2,11 +2,10 @@
 
 namespace App\Core\Http;
 
-use App\Bags\FileBag;
 use App\Bags\ParameterBag;
 use App\Core\Container;
+use App\Core\Includes\Session;
 use App\Core\Model;
-use App\Core\Session;
 use App\Core\Validation\Validator;
 use App\Core\View;
 use App\Maps\ControllerMap;
