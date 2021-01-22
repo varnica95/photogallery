@@ -18,6 +18,9 @@ class RegisterController extends Controller
         $this->view('register.index');
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
