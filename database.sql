@@ -12,3 +12,16 @@ CREATE TABLE users
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE galleries
+(
+    id          INT NOT NULL AUTO_INCREMENT,
+    user_id     INT NOT NULL,
+    image       INT DEFAULT NULL,
+    title       VARCHAR(100) NOT NULL,
+    description LONGTEXT DEFAULT NULL,
+    path        LONGTEXT NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES gallery.users(id) ON DELETE CASCADE
+);
