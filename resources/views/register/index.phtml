@@ -1,13 +1,49 @@
-<div>
-    <form action="/register" method="post">
-        <input type="text" name="first_name" placeholder="fname">
+<div id="form-div">
 
-        <input type="text" name="last_name" placeholder="lname">
-        <input type="text" name="username" placeholder="uname">
-        <input type="text" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="pw">
-        <input type="password" name="password_again" placeholder="pw, again">
+    <div class="errors">
+        <?php if (isset($errors)): ?>
+        <?php foreach($errors as $error): ?>
+                <label><?php echo $error; ?></label>
+        <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
 
-        <input type="submit" value="Register">
+    <form action="/register" id="form" method="post">
+
+        <div class="form-field">
+            <label for="first_name">First name</label>
+            <input type="text" name="first_name" id="first_name" placeholder="John">
+        </div>
+
+        <div class="form-field">
+            <label for="last_name">Last name</label>
+            <input type="text" name="last_name" id="last_name" placeholder="Smith">
+        </div>
+
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="johnsmith">
+        </div>
+
+        <div class="form-field">
+            <label for="email">Email address</label>
+            <input type="email" name="email" id="email" placeholder="john@example.com">
+        </div>
+
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <div class="form-field">
+            <label for="password_again">Password</label>
+            <input type="password" name="password_again" placeholder="Password, again">
+        </div>
+
+
+        <div class="form-field">
+            <label for=""></label>
+            <input type="submit" value="Register">
+        </div>
     </form>
 </div>

@@ -5,13 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/app.css">
     <title><?php echo $documentName; ?></title>
 </head>
 <body>
 
+<?php if($documentName !== 'Register' && $documentName !== 'Login'): ?>
 <nav id="nav">
     <?php require '_partials/nav.phtml'; ?>
 </nav>
+<?php endif; ?>
 
 <?php require $file; ?>
 

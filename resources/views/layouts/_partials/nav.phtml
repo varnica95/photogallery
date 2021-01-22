@@ -1,8 +1,22 @@
+<p>GALLERY</p>
 <ul>
+    <li><a href="/home">Home</a></li>
+    <li><a href="">My galleries</a></li>
     <li>
-        <a href="#">Home</a>
-        <a href="#">Upload</a>
-        <a href="#">Account</a>
-        <a href="#">Sign out</a>
+        <a href="#">Actions*</a>
+        <ul>
+            <li><a href="/gallery/create">Make Gallery</a></li>
+            <li><a href="">Upload Image</a></li>
+        </ul>
     </li>
+
+    <ul>
+        <li>
+            <a href="#"><?php if(isset($user)): echo $user->first_name; endif; ?>*</a>
+            <ul>
+                <li><a href="">Options</a></li>
+                <li><a href="/out">Sign out</a></li>
+            </ul>
+        </li>
+    </ul>
 </ul>

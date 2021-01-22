@@ -4,6 +4,7 @@
 namespace App\Maps;
 
 
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -14,6 +15,7 @@ class ControllerMap
         'home' => HomeController::class,
         'register' => RegisterController::class,
         'login' => LoginController::class,
+        'gallery' => GalleryController::class,
     ];
 
     public static function resolve($class)
