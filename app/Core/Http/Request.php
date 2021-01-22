@@ -80,7 +80,14 @@ class Request
         $validator->setRules($rules);
 
         $validator->setAliases([
-            //
+            'first_name' => 'First name',
+            'last_name' => 'Last name',
+            'username' => 'Username',
+            'email' => 'Email',
+            'password' => 'Password',
+            'images.*.type' => 'Image type',
+            'title' => 'Title',
+            'description' => 'Description'
         ]);
 
         if (! $validator->validate()) {
