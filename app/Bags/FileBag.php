@@ -6,13 +6,24 @@ namespace App\Bags;
 
 class FileBag
 {
+    /**
+     * @var array
+     */
     protected $files = [];
 
+    /**
+     * FileBag constructor.
+     * @param $files
+     */
     public function __construct($files)
     {
-        dump($this->arrangeFileArrays($files));
+        $this->files = $this->areFilesEmpty($this->arrangeFileArrays($files));
     }
 
+    /**
+     * @param $files
+     * @return array
+     */
     protected function arrangeFileArrays($files)
     {
         $results = [];
@@ -30,5 +41,17 @@ class FileBag
             }
         }
         return $results;
+    }
+
+    /**
+     * @param $arranged
+     * @return array
+     */
+    protected function areFilesEmpty($arranged)
+    {
+        if (count($arranged) === 1 && $arranged[0]['size'] === 0){
+            return [];
+        }
+        return $arranged;
     }
 }
