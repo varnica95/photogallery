@@ -2,6 +2,7 @@
 
 namespace App\Core\Http;
 
+use App\Bags\FileBag;
 use App\Bags\ParameterBag;
 use App\Core\Container;
 use App\Core\Includes\Session;
@@ -22,6 +23,8 @@ class Request
      */
     protected $parameters = [];
 
+    protected $files;
+
     /**
      * Request constructor.
      * @param Container $container
@@ -38,6 +41,7 @@ class Request
     protected function initialize()
     {
         $this->parameters = new ParameterBag($_POST, $this->container->router->getParameters());
+        $this->files = new FileBag($_FILES);
     }
 
     /**
