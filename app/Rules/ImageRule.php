@@ -28,10 +28,6 @@ class ImageRule extends Rule
         $exploded = explode('.', $field);
         $key = end($exploded);
 
-        if (($key === 'size') && $value === 0) {
-            return true;
-        }
-
         if (($key === 'type') && !in_array($value, $this->allowedTypes, true)) {
             return false;
         }
