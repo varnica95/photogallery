@@ -11,3 +11,4 @@ $app->get('/register', [RegisterController::class, 'index']);
 
 $app->post('/login', [LoginController::class, 'store']);
 $app->get('/login', [LoginController::class, 'index']);
+$app->get('/out', [LoginController::class, 'out']);
