@@ -1,0 +1,31 @@
+<?php \App\Core\Includes\Session::unset('id'); ?>
+
+<div id="form-div">
+
+<div class="errors">
+    <?php if (isset($errors)): ?>
+        <?php foreach($errors as $error): ?>
+            <label><?php echo $error; ?></label>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+    <form action="/login" id="form" method="post">
+
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username">
+        </div>
+
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Type a word">
+        </div>
+
+        <div class="form-field">
+            <label for=""></label>
+            <input type="submit" value="Login">
+        </div>
+
+    </form>
+</div>

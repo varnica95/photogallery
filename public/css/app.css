@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+:root{
+    --body-background: #fff;
+    --nav-background: #3f4751;
+    --nav-text-background: #f1f1f1;
+    --error-color: #b14343;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body{
+    background-color: var(--body-background);
+}
+
+#nav{
+    width: 100%;
+    height: 60px;
+    background-color: var(--nav-background);
+}
+
+#nav p{
+    color: var(--nav-text-background);
+    font-size: 24px;
+    line-height: 55px;
+    letter-spacing: 5px;
+    float: left;
+    padding: 0 20px;
+}
+
+#nav ul ul{
+    float: right;
+    margin-right: 100px;
+}
+
+#nav ul li{
+    float: left;
+    list-style: none;
+    position: relative;
+}
+
+#nav ul li a{
+    display: block;
+    color: var(--nav-text-background);
+    font-size: 19px;
+    letter-spacing: 5px;
+    padding: 15px 14px;
+    text-decoration: none;
+}
+
+#nav ul li ul{
+    display: none;
+    position: absolute;
+    background-color: var(--nav-background);
+    padding: 10px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+#nav ul li:hover ul{
+    display: block;
+    position: absolute;
+    background-color: var(--nav-background);
+    padding: 10px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+#nav ul li ul li{
+    width: 140px;
+    border-radius: 4px;
+}
+
+#nav ul li ul a{
+    font-size: 15px;
+    padding: 9px 14px;
+    letter-spacing: 2px;
+}
+
+#nav ul li ul a:hover{
+    background-color: #8695a0;
+}
+
+#form-div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+}
+
+#form{
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.form-field{
+    display: flex;
+    margin: 0 0 1rem 0;
+}
+
+.form-field label{
+    text-align: right;
+    width: 20%;
+}
+
+.form-field input, textarea{
+    border: 2px solid var(--nav-background);
+}
+
+.form-field textarea{
+    resize: vertical;
+    max-height: 200px;
+}
+
+.form-field input[type=submit]{
+    cursor: pointer;
+}
+
+.form-field label, input, textarea{
+    width: 100%;
+    padding: 0.6rem;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+}
+
+.errors{
+    text-align: center;
+}
+
+.errors label{
+    width: 50%;
+    margin: 0 0 0.5rem 50%;
+    justify-content: center;
+    display: block;
+    font-size: 18px;
+    background-color: var(--error-color);
+}
