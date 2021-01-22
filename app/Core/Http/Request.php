@@ -2,6 +2,7 @@
 
 namespace App\Core\Http;
 
+use App\Bags\FileBag;
 use App\Bags\ParameterBag;
 use App\Core\Container;
 use App\Core\Model;
@@ -23,6 +24,11 @@ class Request
     protected $parameters = [];
 
     /**
+     * @var
+     */
+    protected $files;
+
+    /**
      * Request constructor.
      * @param Container $container
      */
@@ -37,10 +43,25 @@ class Request
      */
     protected function initialize()
     {
-        $this->parameters = new ParameterBag(
-            $_POST,
-            $this->container->router->getParameters()
-        );
+        $this->parameters = new ParameterBag($_POST, $this->container->router->getParameters());
+        $this->files = new FileBag($_FILES);
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function file($name)
+    {
+        return $this->files->get($name);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function files()
+    {
+        return $this->files->getFiles();
     }
 
     /**
@@ -79,6 +100,7 @@ class Request
         ]);
 
         if (! $validator->validate()) {
+            dump( $validator->getErrors());
             View::render(
                 ControllerMap::resolve(debug_backtrace()[1]['class']) . '.index',
                 $validator->getErrors()
