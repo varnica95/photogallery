@@ -36,8 +36,21 @@ class Validator
      */
     public function __construct(array $data)
     {
-        $this->data = $data;
+        $this->data = $this->extractWildcardData($data);
         $this->errors = new ErrorBag();
+    }
+
+    protected function extractWildcardData($array, $root = '', $results = [])
+    {
+        foreach ($array as $key => $value) {
+            if (is_array($value)){
+                $results = array_merge($results, $this->extractWildcardData($value, $root . $key . '.'));
+            }else{
+                $results[$root . $key] = $value;
+            }
+        }
+
+        return $results;
     }
 
     /**
@@ -63,7 +76,6 @@ class Validator
     {
         foreach ($this->rules as $field => $rules) {
             $resolved = $this->resolveRules($this->extractRulesFromString($rules));
-
             foreach ($resolved as $rule) {
                 $this->validateRule($field, $rule, $this->resolvedRulesContainOptional($resolved));
             }
@@ -83,18 +95,51 @@ class Validator
         return false;
     }
 
+    /**
+     * @param $field
+     * @param Rule $rule
+     * @param bool $optional
+     */
     private function validateRule($field, Rule $rule, bool $optional = false)
     {
-        if (empty($value = $this->getValueFrom($this->data, $field)) && $optional){
-            return;
-        }
+        foreach ($this->getMatchingData($field) as $matchingDatum) {
+            if (empty($value = $this->getValueFrom($this->data, $matchingDatum)) && $optional){
+                continue;
+            }
 
+            $this->validateUsingRuleObject($matchingDatum, $value, $rule);
+        }
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @param Rule $rule
+     */
+    protected function validateUsingRuleObject($field, $value, Rule $rule)
+    {
         if (! $rule->passes($field, $value, $this->data))
         {
             $this->errors->add($field, $rule->message($this->alias($field)));
         }
     }
 
+    /**
+     * @param $field
+     * @return array|false
+     */
+    protected function getMatchingData($field)
+    {
+        return preg_grep(
+            '/^' . str_replace('*', '([^\.]+)', $field) . '/',
+            array_keys($this->data)
+        );
+    }
+
+    /**
+     * @param $field
+     * @return mixed
+     */
     private function alias($field)
     {
         return $this->aliases[$field] ?? $field;
