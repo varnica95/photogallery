@@ -24,7 +24,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => ['required', 'min:5'],
             'description' => ['required', 'optional', 'max:200'],
-            'images.*' => ['image']
+            'images.*.type' => ['image']
        ]);
     }
 }
