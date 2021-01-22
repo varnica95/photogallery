@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -11,4 +12,7 @@ $app->get('/register', [RegisterController::class, 'index']);
 
 $app->post('/login', [LoginController::class, 'store']);
 $app->get('/login', [LoginController::class, 'index']);
+
 $app->get('/out', [LoginController::class, 'out']);
+
+$app->get('/gallery/create', [GalleryController::class, 'create'])->middleware('auth');
