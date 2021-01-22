@@ -12,12 +12,10 @@ class ImageRule extends Rule
      * @var string[]
      */
     protected $allowedTypes = [
-        'image/png',
-        'image/jpeg',
-        'image/jpg',
-        'image/gif',
-        'image/png'
+        'image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png'
     ];
+
+
 
     /**
      * @param $field
@@ -27,13 +25,16 @@ class ImageRule extends Rule
      */
     public function passes($field, $value, $data)
     {
-//        if (($file = File::get($field))['size'] === 0){
-//            return true;
-//        }
-//
-//        if (! in_array($file['type'], $this->allowedTypes, true)){
-//            return false;
-//        }
+        $exploded = explode('.', $field);
+        $key = end($exploded);
+
+        if (($key === 'size') && $value === 0) {
+            return true;
+        }
+
+        if (($key === 'type') && !in_array($value, $this->allowedTypes, true)) {
+            return false;
+        }
 
         return true;
     }
