@@ -5,6 +5,7 @@ namespace App\Maps;
 
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 class ControllerMap
@@ -12,6 +13,7 @@ class ControllerMap
     protected static $map = [
         'home' => HomeController::class,
         'register' => RegisterController::class,
+        'login' => LoginController::class,
     ];
 
     public static function resolve($class)
