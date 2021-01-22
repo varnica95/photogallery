@@ -4,7 +4,7 @@
 namespace App\Traits\App;
 
 
-use App\Core\Config;
+use App\Core\Includes\Config;
 
 trait MiddlewareHandler
 {

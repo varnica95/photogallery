@@ -4,6 +4,8 @@
 namespace App\Core;
 
 
+use App\Core\Includes\Config;
+
 class Database
 {
     /**

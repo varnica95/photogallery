@@ -1,7 +1,7 @@
 <?php
 
 use App\Core\App;
-use App\Core\Session;
+use App\Core\Includes\Session;
 
 require __DIR__ . '/../vendor/autoload.php';
 
