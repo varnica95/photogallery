@@ -115,6 +115,14 @@ class Request
     }
 
     /**
+     *
+     */
+    public function destroySession()
+    {
+        Session::destroy();
+    }
+
+    /**
      * @param string $path
      */
     public function redirect(string $path)
@@ -123,10 +131,13 @@ class Request
         exit;
     }
 
+    /**
+     * @return mixed
+     */
     public function user()
     {
         return Model::get(
-            ['id', 'first_name', 'username', 'email'],
+            ['id', 'first_name', 'last_name', 'username', 'email'],
             'users',
             'id',
             Session::get('id'));
