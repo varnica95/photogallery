@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
+use App\Models\Gallery;
 
 class GalleryController extends Controller
 {
@@ -21,10 +22,12 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => ['required', 'min:5'],
             'description' => ['required', 'optional', 'max:200'],
-            'images.*.type' => ['image']
+            'image.*.type' => ['image']
        ]);
+
+
     }
 }

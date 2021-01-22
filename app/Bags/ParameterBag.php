@@ -26,10 +26,21 @@ class ParameterBag
         $this->postParameters = $post;
 
         if (! empty($files)){
-            $this->postParameters['images'] = $files;
+            $this->resolveImages($files);
         }
 
+        $this->postParameters['image'] = [];
         $this->routeParameters = $route;
+    }
+
+    protected function resolveImages($files)
+    {
+        if (count($files) === 1){
+            $this->postParameters['image'] = $files[0];
+            return;
+        }
+
+        $this->postParameters['images'] = $files;
     }
 
     /**
