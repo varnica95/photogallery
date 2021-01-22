@@ -19,21 +19,25 @@ class LoginController extends Controller
     {
         $data = $request->validate([
            'username' => 'required|name',
-           'password' => 'required|min:5',
+           'password' => 'required',
         ]);
 
         $user = User::login($data);
 
         if (is_null($user)){
             $this->view('login.index', [
-                'error' => 'Username does not exist.'
+                'errors' => [ 'Username does not exist.' ]
             ]);
+
+            die();
         }
 
         if (! $user){
             $this->view('login.index', [
-                'error' => 'The password you entered is not correct.'
+                'errors' => [ 'The password you entered is not correct.' ]
             ]);
+
+            die();
         }
 
         $request->setSession('id', $user->id);
