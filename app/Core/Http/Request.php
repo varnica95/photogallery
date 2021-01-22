@@ -4,6 +4,7 @@ namespace App\Core\Http;
 
 use App\Bags\ParameterBag;
 use App\Core\Container;
+use App\Core\Model;
 use App\Core\Session;
 use App\Core\Validation\Validator;
 use App\Core\View;
@@ -120,5 +121,14 @@ class Request
     {
         header('Location: /' . $path, true);
         exit;
+    }
+
+    public function user()
+    {
+        return Model::get(
+            ['id', 'first_name', 'username', 'email'],
+            'users',
+            'id',
+            Session::get('id'));
     }
 }

@@ -9,6 +9,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $this->view('home.index');
+        dump($request->user());
+        $this->view('home.index', [
+            'user' => $request->user()
+        ]);
     }
 }
