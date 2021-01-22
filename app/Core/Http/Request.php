@@ -40,8 +40,12 @@ class Request
      */
     protected function initialize()
     {
-        $this->parameters = new ParameterBag($_POST, $this->container->router->getParameters());
         $this->files = new FileBag($_FILES);
+        $this->parameters = new ParameterBag(
+            $_POST,
+            $this->files->getFiles(),
+            $this->container->router->getParameters()
+        );
     }
 
     /**

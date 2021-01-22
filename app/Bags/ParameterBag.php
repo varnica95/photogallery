@@ -21,9 +21,14 @@ class ParameterBag
      * @param $post
      * @param $route
      */
-    public function __construct($post, $route)
+    public function __construct($post, $files, $route)
     {
         $this->postParameters = $post;
+
+        if (! empty($files)){
+            $this->postParameters['images'] = $files;
+        }
+
         $this->routeParameters = $route;
     }
 

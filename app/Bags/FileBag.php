@@ -21,6 +21,14 @@ class FileBag
     }
 
     /**
+     * @return array
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
      * @param $files
      * @return array
      */
