@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Core\Includes\Config;
+use App\Core\Includes\Hash;
 use App\Core\Model;
 
 class Gallery extends Model
@@ -14,7 +15,7 @@ class Gallery extends Model
      */
     public function defaultImage()
     {
-        return Config::env('storage.galleries') . 'gallery_image.png';
+        return Config::env('storage.gallery_images') . 'gallery_image.png';
     }
 
     /**
@@ -23,5 +24,22 @@ class Gallery extends Model
     public function save()
     {
         self::update(get_object_vars($this), $this->id);
+    }
+
+    public function uploadGalleryImage()
+    {
+
+        $extension = explode('.', $this->image['name'])[1];
+        $image = Hash::unique($this->image['name']) . '.' . $extension;
+
+        $path = Config::env('storage.gallery_image') . $image;
+
+        if(! move_uploaded_file($this->image['tmp_name'], $path)){
+            return false;
+        }
+
+        self::update([
+            'image' => $path
+        ], $this->id);
     }
 }
