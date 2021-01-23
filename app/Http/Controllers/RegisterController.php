@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
+use App\Core\Includes\Hash;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -23,7 +24,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'first_name' => 'required|name',
             'last_name' => 'required|name',
             'username' => 'required|name|unique:users',
@@ -32,7 +33,13 @@ class RegisterController extends Controller
             'password_again' => 'required',
         ]);
 
-        $user = User::create($data);
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         if (isset($user)) {
             $request->setSession('id', $user->id);

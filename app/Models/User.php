@@ -4,8 +4,8 @@
 namespace App\Models;
 
 
+use App\Core\Includes\Hash;
 use App\Core\Model;
-use App\Maps\TableMap;
 
 class User extends Model
 {
@@ -17,7 +17,7 @@ class User extends Model
             return null;
         }
 
-        if (! password_verify($data['password'], $user->password)){
+        if (! Hash::check($data['password'], $user->password)){
             return false;
         }
 
