@@ -13,7 +13,7 @@ class GalleryController extends Controller
     /**
      * @param Request $request
      */
-    public function index(Request $request)
+    public function create(Request $request)
     {
         $this->view('gallery.create', [
             'user' => $request->user()
