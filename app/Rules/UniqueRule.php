@@ -20,7 +20,7 @@ class UniqueRule extends Rule
      */
     public function __construct($table)
     {
-        $this->field = $table;
+        $this->table = $table;
     }
 
     /**
@@ -31,7 +31,7 @@ class UniqueRule extends Rule
      */
     public function passes($field, $value, $data)
     {
-        if (Model::validate($field, $this->field, $value)){
+        if (! empty(Model::get('*', $this->table, $field, $value))){
             return false;
         }
 

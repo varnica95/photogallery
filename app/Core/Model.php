@@ -38,10 +38,6 @@ class Model
         $statement = self::$connection->prepare($sql);
 
         foreach ($data as $key => $value) {
-            if ($key === 'password'){
-                $value = password_hash($value, PASSWORD_DEFAULT);
-            }
-
             $statement->bindValue(':' . $key, $value);
         }
 
@@ -87,22 +83,6 @@ class Model
         $statement = self::$connection->query($sql);
 
         $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
-
-        return $statement->fetch();
-    }
-
-    /**
-     * @param $field
-     * @param $table
-     * @param $value
-     * @return mixed
-     */
-    public static function validate($field, $table, $value)
-    {
-        self::$connection = self::connection();
-
-        $sql = "SELECT {$field} FROM {$table} WHERE {$field} = '$value'";
-        $statement = self::$connection->query($sql);
 
         return $statement->fetch();
     }
