@@ -4,6 +4,7 @@
 namespace App\Maps;
 
 
+use App\Models\Gallery;
 use App\Models\User;
 
 class TableMap
@@ -12,7 +13,8 @@ class TableMap
      * @var string[]
      */
     protected static $map = [
-        'users' => User::class
+        'users' => User::class,
+        'galleries' => Gallery::class
     ];
 
     /**
