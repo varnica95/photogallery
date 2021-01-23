@@ -34,7 +34,12 @@ class GalleryController extends Controller
             'description' => $request->description,
         ]);
 
-        $gallery->image = $gallery->defaultImage();
-        $gallery->save();
+        if (empty($request->image)){
+            $gallery->image = $gallery->defaultImage();
+            $gallery->save();
+            die();
+        }
+
+
     }
 }
