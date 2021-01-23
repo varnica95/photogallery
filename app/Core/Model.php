@@ -91,30 +91,6 @@ class Model
         return $statement->fetch();
     }
 
-    public static function login(array $data)
-    {
-        self::$connection = self::connection();
-
-        $sql = "SELECT * FROM users WHERE username = '{$data['username']}'";
-        $statement = self::$connection->query($sql);
-
-        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass('users'));
-
-        $user = $statement->fetch();
-
-        if (empty($user)){
-            return null;
-        }
-
-        if (! password_verify($data['password'], $user->password)){
-            return false;
-        }
-
-        unset($user->password);
-
-        return $user;
-    }
-
     /**
      * @param $field
      * @param $table
