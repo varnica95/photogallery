@@ -94,7 +94,6 @@ class Request
         ]);
 
         if (! $validator->validate()) {
-            dump( $validator->getErrors());
             View::render(
                 ControllerMap::resolve(debug_backtrace()[1]['class']) . '.index',
                 $validator->getErrors()
