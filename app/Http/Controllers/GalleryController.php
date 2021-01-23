@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
-use App\Core\Includes\Folder;
+use App\Core\Includes\File;
 use App\Models\Gallery;
 
 class GalleryController extends Controller
@@ -23,24 +23,24 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required', 'min:5'],
-            'description' => ['required', 'optional', 'max:200'],
-            'image.*.type' => ['image']
-       ]);
+//        $request->validate([
+//            'title' => ['required', 'min:5'],
+//            'description' => ['required', 'optional', 'max:200'],
+//            'image.*.type' => ['image']
+//       ]);
+//
+//        $gallery = Gallery::create([
+//            'user_id' => $request->user()->id,
+//            'title' => $request->title,
+//            'description' => $request->description,
+//        ]);
+//
+//        if (is_null($request->image)){
+//            $gallery->image = $gallery->defaultImage();
+//            $gallery->save();
+//            die();
+//        }
 
-        $gallery = Gallery::create([
-            'user_id' => $request->user()->id,
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
-
-        if (is_null($request->image)){
-            $gallery->image = $gallery->defaultImage();
-            $gallery->save();
-            die();
-        }
-
-        Folder::touch('storage.galleries', 'ccc');
+        File::touch('storage.galleries', 'ccc');
     }
 }
