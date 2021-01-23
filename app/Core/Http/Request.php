@@ -73,6 +73,10 @@ class Request
         return $this->parameters->getPostParameters();
     }
 
+    /**
+     * @param array $rules
+     * @return mixed
+     */
     public function validate(array $rules)
     {
         $validator = new Validator($this->all());
@@ -99,13 +103,7 @@ class Request
             die();
         }
 
-        $data = $this->all();
-
-        if (isset($data['password_again'])){
-            unset($data['password_again']);
-        }
-
-        return $data;
+        return $this->all();
     }
 
     /**
