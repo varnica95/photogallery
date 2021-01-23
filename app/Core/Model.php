@@ -87,6 +87,10 @@ class Model
         return $statement->fetch();
     }
 
+    /**
+     * @param array $data
+     * @param int $id
+     */
     public static function update(array $data, int $id)
     {
         self::$connection = self::connection();
@@ -94,12 +98,10 @@ class Model
 
         $fields = '';
         foreach ($data as $key => $value) {
-            $fields = $key . ' = :' . $key . ', ';
+            $fields .= $key . ' = :' . $key . ', ';
         }
 
-        if (count($data) === 1) {
-            $fields = trim($fields, ', ');
-        }
+        $fields = trim($fields, ', ');
 
         $sql = "UPDATE {$table} SET {$fields} WHERE id = '$id'";
         $statement = self::$connection->prepare($sql);
@@ -108,7 +110,7 @@ class Model
             $statement->bindValue(':' . $key, $value);
         }
 
-        return $statement->execute();
+        $statement->execute();
     }
     /**
      * @param $table

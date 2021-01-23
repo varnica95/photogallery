@@ -34,8 +34,7 @@ class GalleryController extends Controller
             'description' => $request->description,
         ]);
 
-        Gallery::update([
-            'image' => $gallery->defaultImage()
-        ], $gallery->id);
+        $gallery->image = $gallery->defaultImage();
+        $gallery->save();
     }
 }

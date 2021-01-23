@@ -16,4 +16,12 @@ class Gallery extends Model
     {
         return Config::env('storage.galleries') . 'gallery_image.png';
     }
+
+    /**
+     *
+     */
+    public function save()
+    {
+        self::update(get_object_vars($this), $this->id);
+    }
 }
