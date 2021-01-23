@@ -29,7 +29,7 @@ class ParameterBag
             $this->resolveImages($files);
         }
 
-        $this->postParameters['image'] = [];
+
         $this->routeParameters = $route;
     }
 
@@ -40,7 +40,12 @@ class ParameterBag
             return;
         }
 
-        $this->postParameters['images'] = $files;
+        if (count($files) > 1){
+            $this->postParameters['images'] = $files;
+            return;
+        }
+
+        $this->postParameters['image'] = [];
     }
 
     /**
