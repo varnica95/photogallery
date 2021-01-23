@@ -85,7 +85,6 @@ class Request
             'username' => 'Username',
             'email' => 'Email',
             'password' => 'Password',
-            'images.*.type' => 'Image type',
             'title' => 'Title',
             'description' => 'Description'
         ]);
