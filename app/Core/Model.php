@@ -87,6 +87,29 @@ class Model
         return $statement->fetch();
     }
 
+    public static function update(array $data, int $id)
+    {
+        self::$connection = self::connection();
+        $table = TableMap::resolve(get_called_class());
+
+        $fields = '';
+        foreach ($data as $key => $value) {
+            $fields = $key . ' = :' . $key . ', ';
+        }
+
+        if (count($data) === 1) {
+            $fields = trim($fields, ', ');
+        }
+
+        $sql = "UPDATE {$table} SET {$fields} WHERE id = '$id'";
+        $statement = self::$connection->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $statement->bindValue(':' . $key, $value);
+        }
+
+        return $statement->execute();
+    }
     /**
      * @param $table
      * @param $id

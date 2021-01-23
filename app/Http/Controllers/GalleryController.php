@@ -28,10 +28,14 @@ class GalleryController extends Controller
             'image.*.type' => ['image']
        ]);
 
-        if (empty($request->image)){
-            Gallery::create([
+        $gallery = Gallery::create([
+            'user_id' => $request->user()->id,
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
 
-            ]);
-        }
+        Gallery::update([
+            'image' => $gallery->defaultImage()
+        ], $gallery->id);
     }
 }
