@@ -12,10 +12,10 @@ use App\Http\Controllers\RegisterController;
 class ControllerMap
 {
     protected static $map = [
-        'home' => HomeController::class,
-        'register' => RegisterController::class,
-        'login' => LoginController::class,
-        'gallery' => GalleryController::class,
+        'home.index' => HomeController::class,
+        'register.index' => RegisterController::class,
+        'login.index' => LoginController::class,
+        'gallery.create' => GalleryController::class,
     ];
 
     public static function resolve($class)
