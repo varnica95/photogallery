@@ -32,7 +32,7 @@ class Gallery extends Model
         $extension = explode('.', $this->image['name'])[1];
         $image = Hash::unique($this->image['name']) . '.' . $extension;
 
-        $path = Config::env('storage.gallery_image') . $image;
+        $path = Config::env('storage.gallery_images') . $image;
 
         if(! move_uploaded_file($this->image['tmp_name'], $path)){
             return false;
