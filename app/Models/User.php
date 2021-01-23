@@ -9,6 +9,10 @@ use App\Core\Model;
 
 class User extends Model
 {
+    /**
+     * @param array $data
+     * @return false|mixed|null
+     */
     public static function login(array $data)
     {
         $user = self::get('*', 'users', 'username', $data['username']);
