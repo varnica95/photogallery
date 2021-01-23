@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b73d2b7c0132ba4721a81f334cf1a994ba92123a',
+    'reference' => '43a152dd2774a01772d0f81e981d873860041217',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b73d2b7c0132ba4721a81f334cf1a994ba92123a',
+      'reference' => '43a152dd2774a01772d0f81e981d873860041217',
     ),
     'symfony/polyfill-mbstring' => 
     array (
