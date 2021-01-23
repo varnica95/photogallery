@@ -73,6 +73,24 @@ class Model
         return $statement->fetch();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function find(int $id)
+    {
+        self::$connection = self::connection();
+
+        $table = TableMap::resolve(get_called_class());
+
+        $sql = "SELECT * FROM {$table} WHERE id = '$id'";
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
+
+        return $statement->fetch();
+    }
+
     public static function login(array $data)
     {
         self::$connection = self::connection();
