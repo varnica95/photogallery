@@ -18,6 +18,15 @@ class Hash
 
     /**
      * @param $string
+     * @return string
+     */
+    public static function unique($string)
+    {
+        return uniqid($string, true);
+    }
+
+    /**
+     * @param $string
      * @param $hash
      * @return bool
      */
