@@ -17,4 +17,10 @@ trait MethodAccessor
         $this->item('router')->setRoute($route, $handler, ['POST']);
         return $this;
     }
+
+    public function delete($route, $handler)
+    {
+        $this->item('router')->setRoute($route, $handler, ['DELETE']);
+        return $this;
+    }
 }
