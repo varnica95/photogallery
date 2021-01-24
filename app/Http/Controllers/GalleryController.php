@@ -56,7 +56,7 @@ class GalleryController extends Controller
      */
     public function destroy(Request $request, Gallery $gallery)
     {
-        dump($gallery);
+        $gallery->destroy();
     }
 
     /**

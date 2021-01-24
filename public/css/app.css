@@ -139,3 +139,64 @@ body{
     font-size: 18px;
     background-color: var(--error-color);
 }
+
+.gallery-wrap{
+    width: 1500px;
+    height: auto;
+    margin: 20px auto;
+}
+
+.gallery-wrap .my-gallery{
+    font-size: 24px;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.gallery-card{
+    border: 2px var(--nav-background) solid;
+    transition: 0.4s;
+    font-size: 20px;
+    float: left;
+    margin: 10px;
+}
+
+.gallery-wrap .gallery-card img{
+    width: 300px;
+    height: 250px;
+}
+
+.gallery-body{
+    color: var(--nav-text-background);
+    background-color: var(--nav-background);
+    max-width: 300px;
+}
+
+.gallery-body h3{
+    text-transform: uppercase;
+    margin-left: 10px;
+    word-wrap: break-word;
+}
+
+.gallery-body p{
+    margin-left: 10px;
+    word-wrap: break-word;
+}
+
+.delete-gallery{
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+
+.delete-gallery form{
+    width: 50px;
+}
+
+.delete-gallery form input{
+    background-color: var(--nav-background);
+    color: var(--nav-text-background);
+}
+
+.gallery-card:hover .delete-gallery{
+    display: block;
+}

@@ -1,0 +1,29 @@
+
+
+
+<div class="gallery-wrap">
+
+    <div class="my-gallery">
+        <p>My galleries</p>
+    </div>
+
+    <?php foreach ($galleries as $gallery): ?>
+    <div class="gallery-card">
+        <div class="delete-gallery">
+            <form action="/galleries/<?php echo $gallery->id;?>" method="post">
+                <input type="submit" value="X">
+            </form>
+        </div>
+        <a href="/galleries/<?php echo $gallery->id;?>/show">
+            <img src="<?php echo $gallery->image;?>" alt="">
+        </a>
+        <div class="gallery-body">
+            <h3><?php echo $gallery->title;?></h3>
+            <p><?php echo $gallery->description;?></p>
+        </div>
+        <!-- /.gallery-body -->
+    </div>
+    <?php endforeach; ?>
+    <!-- /.gallery-card -->
+</div>
+<!-- /.gallery-wrap -->

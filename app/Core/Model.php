@@ -153,4 +153,18 @@ class Model
 
         return $statement->fetchAll();
     }
+
+    public static function delete($id)
+    {
+        self::$connection = self::connection();
+        $table = TableMap::resolve(get_called_class());
+
+        $sql = "DELETE FROM {$table} WHERE id = :id";
+
+        $statement = self::$connection->prepare($sql);
+
+        $statement->bindValue(':id', $id);
+
+        return $statement->execute();
+    }
 }

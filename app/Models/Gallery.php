@@ -47,4 +47,9 @@ class Gallery extends Model
     {
         return Model::join(__CLASS__, 'inner', User::class, 'user_id', 'id');
     }
+
+    public function destroy()
+    {
+        self::delete($this->id);
+    }
 }
