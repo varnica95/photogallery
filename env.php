@@ -17,6 +17,7 @@ return [
         'namespace' => 'App\\Middlewares\\'
     ],
     'storage' => [
+        'default' => 'storage/default/',
         'gallery_images' => 'storage/gallery_images/'
     ]
 ];
