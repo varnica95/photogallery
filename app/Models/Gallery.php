@@ -28,7 +28,6 @@ class Gallery extends Model
 
     public function uploadGalleryImage()
     {
-
         $extension = explode('.', $this->image['name'])[1];
         $image = Hash::unique($this->image['name']) . '.' . $extension;
 
