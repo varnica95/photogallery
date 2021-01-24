@@ -22,6 +22,9 @@ class GalleryController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -36,14 +39,13 @@ class GalleryController extends Controller
             'description' => $request->description,
         ]);
 
-        if (is_null($request->image)){
+        if (! is_null($request->image)){
+            $gallery->image = $request->image;
+            $gallery->uploadGalleryImage();
+        }else{
             $gallery->image = $gallery->defaultImage();
             $gallery->save();
-            die();
         }
-
-        $gallery->image = $request->image;
-        $gallery->uploadGalleryImage();
 
         $request->redirect('home');
     }
