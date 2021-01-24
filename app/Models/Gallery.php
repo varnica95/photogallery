@@ -16,7 +16,7 @@ class Gallery extends Model
      */
     public function defaultImage()
     {
-        return Config::env('storage.gallery_images') . 'gallery_image.png';
+        return Config::env('storage.default') . 'gallery_image.png';
     }
 
     /**
