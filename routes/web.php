@@ -15,7 +15,7 @@ $app->get('/login', [LoginController::class, 'index']);
 
 $app->get('/out', [LoginController::class, 'out']);
 
+$app->get('/galleries/create', [GalleryController::class, 'create'])->middleware('auth');
 $app->get('/galleries/{gallery}/show', [GalleryController::class, 'show'])->middleware('auth');
 $app->delete('/galleries/{gallery}', [GalleryController::class, 'destroy'])->middleware('auth');
-$app->get('/galleries/create', [GalleryController::class, 'create'])->middleware('auth');
 $app->post('/galleries', [GalleryController::class, 'store'])->middleware('auth');
