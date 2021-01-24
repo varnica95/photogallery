@@ -49,4 +49,9 @@ class GalleryController extends Controller
 
         $request->redirect('home');
     }
+
+    public function show(Request $request, Gallery $gallery)
+    {
+        dump($gallery->user());
+    }
 }
