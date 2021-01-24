@@ -87,6 +87,10 @@ class Router
             $cache = $this->routes[$route];
             $cache[1] = 'store';
 
+            if(in_array('DELETE', $this->methods[$route], true)){
+                $cache[1] = 'destroy';
+            }
+
             return $cache;
         }
 
