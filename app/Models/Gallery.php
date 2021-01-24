@@ -43,13 +43,21 @@ class Gallery extends Model
         ], $this->id);
     }
 
+    /**
+     * @return array
+     */
     public function user()
     {
         return Model::join(__CLASS__, 'inner', User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return bool
+     */
     public function destroy()
     {
-        self::delete($this->id);
+        if(self::delete($this->id)){
+            return unlink($this->image);
+        }
     }
 }
