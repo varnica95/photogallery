@@ -4,7 +4,19 @@
 namespace App\Http\Controllers;
 
 
-class ImageController
+use App\Core\Controller;
+use App\Core\Http\Request;
+
+class ImageController extends Controller
 {
-    //
+    /**
+     * @param Request $request
+     */
+    public function upload(Request $request)
+    {
+        $this->view('images.upload', [
+            'user' => $request->user(),
+            'galleries' => $request->user()->galleries()
+        ]);
+    }
 }
