@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -19,3 +20,6 @@ $app->get('/galleries/create', [GalleryController::class, 'create'])->middleware
 $app->get('/galleries/{gallery}/show', [GalleryController::class, 'show'])->middleware('auth');
 $app->delete('/galleries/{gallery}', [GalleryController::class, 'destroy'])->middleware('auth');
 $app->post('/galleries', [GalleryController::class, 'store'])->middleware('auth');
+
+
+$app->get('/images/upload', [ImageController::class, 'upload'])->middleware('auth');
