@@ -5,6 +5,7 @@
     --nav-background: #3f4751;
     --nav-text-background: #f1f1f1;
     --error-color: #b14343;
+    --success-color: #285a1a;
 }
 
 *{
@@ -127,8 +128,17 @@ body{
     font-size: 1.1rem;
 }
 
-.errors{
+.errors, .success{
     text-align: center;
+}
+
+.success label{
+    width: 50%;
+    margin: 0 0 0.5rem 50%;
+    justify-content: center;
+    display: block;
+    font-size: 18px;
+    background-color: var(--success-color);
 }
 
 .errors label{
