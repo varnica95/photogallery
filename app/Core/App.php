@@ -7,6 +7,7 @@ namespace App\Core;
 use App\Core\Http\Request;
 use App\Core\Middleware\RootMiddleware;
 use App\Core\Routing\Router;
+use App\Maps\ModelMap;
 use App\Traits\App\MethodAccessor;
 use App\Traits\App\MiddlewareHandler;
 
@@ -82,7 +83,13 @@ class App
             $middleware = $this->item('middleware');
             $request = $middleware->handle($this->item('request'));
 
-            return call_user_func($handler, $request);
+            $parameters = $this->resolveModelParameters($request);
+
+            if ($parameters instanceof Request){
+                return call_user_func($handler, $parameters);
+            }
+
+            return call_user_func($handler, ...$parameters);
         }
 
         $parameters = array_values($this->item('request')->getRouteParameters());
@@ -96,5 +103,26 @@ class App
     {
         echo $handler;
         return;
+    }
+
+    /**
+     * @param Request $request
+     * @return Request[]
+     */
+    private function resolveModelParameters(Request $request)
+    {
+        if (is_null($parameters = $request->getRouteParameters())){
+            return $request;
+        }
+
+        $results = array($request);
+        foreach ($request->getRouteParameters() as $key => $value) {
+            if (! is_null($model = ModelMap::resolve($key))){
+                $model = $model::find($value);
+                $results[] = $model;
+            }
+        }
+
+        return $results;
     }
 }
