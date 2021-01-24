@@ -133,7 +133,7 @@ class Model
      * @param $right
      * @return array
      */
-    public static function join($left, $keyword, $right, array $data = [])
+    public static function join($left, $keyword, $right, string $localKey, string $foreignKey, array $data = [])
     {
         self::$connection = self::connection();
 
@@ -145,7 +145,7 @@ class Model
             $fields = implode(', ', $data);
         }
 
-        $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.id = {$right}.user_id";
+        $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey}";
 
         $statement = self::$connection->query($sql);
 
