@@ -50,6 +50,19 @@ class GalleryController extends Controller
         $request->redirect('home');
     }
 
+    /**
+     * @param Request $request
+     * @param Gallery $gallery
+     */
+    public function destroy(Request $request, Gallery $gallery)
+    {
+        dump($gallery);
+    }
+
+    /**
+     * @param Request $request
+     * @param Gallery $gallery
+     */
     public function show(Request $request, Gallery $gallery)
     {
         dump($gallery->user());
