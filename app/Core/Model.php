@@ -125,4 +125,27 @@ class Model
         $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
         return $statement->fetch();
     }
+
+    /**
+     * @param array $data
+     * @param $left
+     * @param $keyword
+     * @param $right
+     * @return array
+     */
+    public static function join(array $data, $left, $keyword, $right)
+    {
+        self::$connection = self::connection();
+        $fields = implode(', ', $data);
+        $left = TableMap::resolve($left);
+        $right = TableMap::resolve($right);
+
+        $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.id = {$right}.user_id";
+
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($left));
+
+        return $statement->fetchAll();
+    }
 }
