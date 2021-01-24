@@ -17,7 +17,7 @@ class GalleryController extends Controller
      */
     public function create(Request $request)
     {
-        $this->view('gallery.create', [
+        $this->view('galleries.create', [
             'user' => $request->user()
         ]);
     }
@@ -47,7 +47,10 @@ class GalleryController extends Controller
             $gallery->save();
         }
 
-        $request->redirect('home');
+        $this->view('galleries.create', [
+            'user' => $request->user(),
+            'success' => 'Gallery successfully created.'
+        ]);
     }
 
     /**

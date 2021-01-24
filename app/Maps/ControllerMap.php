@@ -15,7 +15,7 @@ class ControllerMap
         'home.index' => HomeController::class,
         'register.index' => RegisterController::class,
         'login.index' => LoginController::class,
-        'gallery.create' => GalleryController::class,
+        'galleries.create' => GalleryController::class,
     ];
 
     public static function resolve($class)
