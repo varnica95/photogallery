@@ -94,10 +94,13 @@ class Request
         ]);
 
         if (! $validator->validate()) {
-            View::render(
-                ControllerMap::resolve(debug_backtrace()[1]['class']),
-                $validator->getErrors()
-            );
+
+            $data = $validator->getErrors();
+            if ($user = $this->user()){
+                $data = array_merge($validator->getErrors(), ['user' => $user]);
+            }
+
+            View::render(ControllerMap::resolve(debug_backtrace()[1]['class']), $data);
 
             die();
         }

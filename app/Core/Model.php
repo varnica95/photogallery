@@ -73,7 +73,7 @@ class Model
      * @param int $id
      * @return mixed
      */
-    public static function find(int $id)
+    public static function find($id)
     {
         self::$connection = self::connection();
 
@@ -91,7 +91,7 @@ class Model
      * @param array $data
      * @param int $id
      */
-    public static function update(array $data, int $id)
+    public static function update(array $data, $id)
     {
         self::$connection = self::connection();
         $table = TableMap::resolve(get_called_class());
