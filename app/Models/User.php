@@ -35,6 +35,6 @@ class User extends Model
      */
     public function galleries()
     {
-        return self::join(__CLASS__, 'INNER', Gallery::class);
+        return self::join(__CLASS__, 'INNER', Gallery::class, 'id', 'user_id');
     }
 }

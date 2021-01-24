@@ -10,6 +10,7 @@ use App\Core\Model;
 
 class Gallery extends Model
 {
+
     /**
      * @return string
      */
@@ -40,5 +41,10 @@ class Gallery extends Model
         self::update([
             'image' => $path
         ], $this->id);
+    }
+
+    public function user()
+    {
+        return Model::join(__CLASS__, 'inner', User::class, 'user_id', 'id');
     }
 }
