@@ -1,5 +1,12 @@
 <div id="form-div">
     <img src="/images/gallery_image.png" alt="">
+
+    <?php if (isset($success)): ?>
+        <div class="success">
+            <label><?php echo $success; ?></label>
+        </div>
+    <?php endif; ?>
+
     <div class="errors">
         <?php if (isset($errors)): ?>
             <?php foreach($errors as $error): ?>
