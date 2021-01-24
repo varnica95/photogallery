@@ -29,4 +29,9 @@ class User extends Model
 
         return $user;
     }
+
+    public function galleries()
+    {
+        return self::join(__CLASS__, 'INNER', Gallery::class, ['first_name']);
+    }
 }

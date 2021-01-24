@@ -133,18 +133,23 @@ class Model
      * @param $right
      * @return array
      */
-    public static function join(array $data, $left, $keyword, $right)
+    public static function join($left, $keyword, $right, array $data = [])
     {
         self::$connection = self::connection();
-        $fields = implode(', ', $data);
+
         $left = TableMap::resolve($left);
         $right = TableMap::resolve($right);
+
+        $fields = $right . '.*';
+        if (! empty($data)){
+            $fields = implode(', ', $data);
+        }
 
         $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.id = {$right}.user_id";
 
         $statement = self::$connection->query($sql);
 
-        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($left));
+        $statement->setFetchMode(PDO::FETCH_OBJ);
 
         return $statement->fetchAll();
     }
