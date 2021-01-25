@@ -4,31 +4,12 @@
 namespace App\Models;
 
 
-use App\Core\Includes\Hash;
 use App\Core\Model;
+use App\Traits\Auth;
 
 class User extends Model
 {
-    /**
-     * @param array $data
-     * @return false|mixed|null
-     */
-    public static function login(array $data)
-    {
-        $user = self::get('*', 'users', 'username', $data['username']);
-
-        if (empty($user)){
-            return null;
-        }
-
-        if (! Hash::check($data['password'], $user->password)){
-            return false;
-        }
-
-        unset($user->password);
-
-        return $user;
-    }
+    use Auth;
 
     /**
      * @return array
