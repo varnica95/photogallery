@@ -5,6 +5,7 @@ namespace App\Maps;
 
 
 use App\Models\Gallery;
+use App\Models\Image;
 use App\Models\User;
 
 class TableMap
@@ -14,7 +15,8 @@ class TableMap
      */
     protected static $map = [
         'users' => User::class,
-        'galleries' => Gallery::class
+        'galleries' => Gallery::class,
+        'images' => Image::class,
     ];
 
     /**
