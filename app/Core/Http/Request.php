@@ -88,7 +88,6 @@ class Request
      */
     public function validate(array $rules)
     {
-        dump($this->all());
         $validator = new Validator($this->all());
 
         $validator->setRules($rules);
