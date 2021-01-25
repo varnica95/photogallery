@@ -39,7 +39,7 @@ class GalleryController extends Controller
 
         if (! empty($request->only('image'))){
             $gallery->image = $request->image;
-            $gallery->upload('gallery_images');
+            $gallery->uploadTo('gallery_images');
         }else{
             $gallery->image = $gallery->defaultImage();
             $gallery->save();

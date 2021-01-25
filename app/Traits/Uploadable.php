@@ -13,7 +13,7 @@ trait Uploadable
      * @return false
      * sudo chmod -R 777 public/storage
      */
-    public function upload(string $path)
+    public function uploadTo(string $path)
     {
         $extension = explode('.', $this->image['name'])[1];
         $image = Hash::unique($this->image['name']) . '.' . $extension;

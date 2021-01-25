@@ -43,7 +43,7 @@ class ImageController extends Controller
             ]);
 
             $images->image = $request->$noun;
-            $images->upload('images');
+            $images->uploadTo('images');
         }else{
             foreach ($request->$noun as $key => $value) {
                 $images[$key] = Image::create([
