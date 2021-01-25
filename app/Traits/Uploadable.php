@@ -13,12 +13,12 @@ trait Uploadable
      * @return false
      * sudo chmod -R 777 public/storage
      */
-    public function uploadTo(string $path)
+    public function uploadTo(string $dir)
     {
         $extension = explode('.', $this->image['name'])[1];
         $image = Hash::unique($this->image['name']) . '.' . $extension;
 
-        $path = Config::env('storage.' . $path) . $image;
+        $path = Config::env('storage.' . $dir) . $image;
 
         if(! move_uploaded_file($this->image['tmp_name'], $path)){
             return false;
