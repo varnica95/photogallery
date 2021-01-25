@@ -19,4 +19,13 @@ class ImageController extends Controller
             'galleries' => $request->user()->galleries()
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'images.*.type' => 'image',
+            'gallery_id' => 'required'
+        ]);
+    }
 }

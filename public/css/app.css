@@ -121,12 +121,13 @@ body{
     cursor: pointer;
 }
 
-.form-field label, input, textarea{
+.form-field label, input, textarea, select{
     width: 100%;
     padding: 0.6rem;
     box-sizing: border-box;
     font-size: 1.1rem;
 }
+
 
 .errors, .success{
     text-align: center;

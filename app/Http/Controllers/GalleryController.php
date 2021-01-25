@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
-use App\Core\Includes\File;
-use App\Core\View;
 use App\Models\Gallery;
 
 class GalleryController extends Controller
