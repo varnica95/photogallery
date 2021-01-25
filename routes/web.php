@@ -23,3 +23,4 @@ $app->post('/galleries', [GalleryController::class, 'store'])->middleware('auth'
 
 
 $app->get('/images/upload', [ImageController::class, 'upload'])->middleware('auth');
+$app->post('/images', [ImageController::class, 'store'])->middleware('auth');
