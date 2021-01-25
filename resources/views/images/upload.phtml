@@ -1,0 +1,48 @@
+<div id="form-div">
+
+    <?php if (isset($success)): ?>
+        <div class="success">
+            <label><?php echo $success; ?></label>
+        </div>
+    <?php endif; ?>
+
+    <div class="errors">
+        <?php if (isset($errors)): ?>
+            <?php foreach($errors as $error): ?>
+                <label><?php echo $error; ?></label>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+
+    <form action="/images" id="form" method="post" enctype="multipart/form-data">
+
+        <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" placeholder="Image title">
+        </div>
+
+        <div class="form-field">
+            <label for="image">Images</label>
+            <input type="file" name="images[]" id="image" multiple="multiple">
+        </div>
+
+        <div class="form-field">
+            <label for="galleries">Gallery</label>
+            <select class="gallery-select" id="galleries" name="gallery_id">
+                     <?php if (! empty($galleries)): ?>
+                         <option value="" style="font-style: italic;">Choose from the list</option>
+                          <?php foreach($galleries as $gallery): ?>
+                             <option value="<?php echo $gallery->id; ?>"><?php echo $gallery->title; ?></option>
+                          <?php endforeach; ?>
+                     <?php else: ?>
+                         <option style="font-style: italic;">No galleries</option>
+                    <?php endif; ?>
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label for=""></label>
+            <input type="submit" value="Upload">
+        </div>
+    </form>
+</div>
