@@ -30,7 +30,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => ['required', 'min:5'],
             'description' => ['required', 'optional', 'max:200'],
-            'image.*.type' => ['image']
+            'image' => ['image']
        ]);
 
         $gallery = Gallery::create([
@@ -39,7 +39,7 @@ class GalleryController extends Controller
             'description' => $request->description,
         ]);
 
-        if (! is_null($request->image)){
+        if (! empty($request->only('image'))){
             $gallery->image = $request->image;
             $gallery->uploadGalleryImage();
         }else{

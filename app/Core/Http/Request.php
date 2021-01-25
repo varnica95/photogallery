@@ -66,6 +66,15 @@ class Request
     }
 
     /**
+     * @param string $name
+     * @return mixed
+     */
+    public function only(string $name)
+    {
+        return $this->parameters->get($name);
+    }
+
+    /**
      * @return mixed
      */
     public function all()
@@ -79,6 +88,7 @@ class Request
      */
     public function validate(array $rules)
     {
+        dump($this->all());
         $validator = new Validator($this->all());
 
         $validator->setRules($rules);
@@ -90,14 +100,16 @@ class Request
             'email' => 'Email',
             'password' => 'Password',
             'title' => 'Title',
-            'description' => 'Description'
+            'description' => 'Description',
+            'gallery_id' => 'Gallery',
+            'image.type' => 'Image type'
         ]);
 
         if (! $validator->validate()) {
 
             $data = $validator->getErrors();
             if ($user = $this->user()){
-                $data = array_merge($validator->getErrors(), ['user' => $user]);
+                $data = array_merge($validator->getErrors(), ['user' => $user], ['galleries' => $user->galleries()]);
             }
 
             View::render(ControllerMap::resolve(debug_backtrace()[1]['class']), $data);
