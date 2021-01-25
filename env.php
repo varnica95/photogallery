@@ -18,6 +18,7 @@ return [
     ],
     'storage' => [
         'default' => 'storage/default/',
-        'gallery_images' => 'storage/gallery_images/'
+        'gallery_images' => 'storage/gallery_images/',
+        'images' => 'storage/images/',
     ]
 ];

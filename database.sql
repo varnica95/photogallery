@@ -24,3 +24,14 @@ CREATE TABLE galleries
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES gallery.users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE images
+(
+    id          INT NOT NULL AUTO_INCREMENT,
+    gallery_id     INT NOT NULL,
+    title       VARCHAR(100) NOT NULL,
+    image       LONGTEXT DEFAULT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (gallery_id) REFERENCES gallery.galleries(id) ON DELETE CASCADE
+);
