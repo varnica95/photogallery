@@ -25,10 +25,11 @@ class ParameterBag
     {
         $this->postParameters = $post;
 
-        if (! empty($files)){
+        if (! empty($files)) {
             $this->resolveImages($files);
+        }else{
+            $this->postParameters['image'] = [];
         }
-
 
         $this->routeParameters = $route;
     }
@@ -44,8 +45,6 @@ class ParameterBag
             $this->postParameters['images'] = $files;
             return;
         }
-
-        $this->postParameters['image'] = [];
     }
 
     /**
