@@ -58,6 +58,7 @@ class ImageController extends Controller
 
         $this->view('images.upload', [
             'user' => $request->user(),
+            'galleries' => $request->user()->galleries(),
             'success' => 'Gallery successfully created.'
         ]);
     }
