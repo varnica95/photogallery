@@ -29,7 +29,7 @@ class ImageController extends Controller
         $request->validate([
             'title' => 'required',
             'gallery_id' => 'required',
-            empty($noun) ? $noun . '.*.type' : $noun => 'required|image',
+            empty($noun) ? $noun : $noun . '.*.type' => 'required|image',
         ]);
 
         $gallery = Gallery::find($request->gallery_id);
