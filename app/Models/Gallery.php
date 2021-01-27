@@ -16,7 +16,7 @@ class Gallery extends Model
      */
     public function user()
     {
-        return self::join(__CLASS__, 'inner', User::class, 'user_id', 'id');
+        return self::join(User::class, 'inner', __CLASS__, 'id', 'user_id');
     }
 
     /**
@@ -24,6 +24,6 @@ class Gallery extends Model
      */
     public function images()
     {
-        return self::join(__CLASS__, 'inner', Image::class, 'id', 'gallery_id');
+        return self::join(Image::class, 'inner', __CLASS__, 'gallery_id', 'id');
     }
 }
