@@ -57,6 +57,12 @@ class GalleryController extends Controller
      */
     public function destroy(Request $request, Gallery $gallery)
     {
+        if (! empty($images = $gallery->images())) {
+            foreach ($images as $image) {
+                unlink($image->image);
+            }
+        }
+
         $gallery->destroy();
     }
 
