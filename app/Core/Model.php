@@ -140,12 +140,41 @@ class Model
         $left = TableMap::resolve($left);
         $right = TableMap::resolve($right);
 
-        $fields = $right . '.*';
+        $fields = $left . '.*';
         if (! empty($data)){
             $fields = implode(', ', $data);
         }
 
         $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey}";
+
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+
+        return $statement->fetchAll();
+    }
+
+    /**
+     * @param array $data
+     * @param $left
+     * @param $keyword
+     * @param $right
+     * @return array
+     */
+    public static function joinThrough($through, $left, $right, $firstKeyword, $secondKeyword, string $localKey, string $foreignKey, string $localThroughKey, string $throughKey, array $data = []): array
+    {
+        self::$connection = self::connection();
+
+        $left = TableMap::resolve($left);
+        $through = TableMap::resolve($through);
+        $right = TableMap::resolve($right);
+
+        $fields = $left . '.*';
+        if (! empty($data)){
+            $fields = implode(', ', $data);
+        }
+
+        $sql = "SELECT {$fields} FROM {$left} {$firstKeyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey} {$secondKeyword} JOIN {$through} ON {$right}.{$localThroughKey} = {$through}.{$throughKey}";
 
         $statement = self::$connection->query($sql);
 
