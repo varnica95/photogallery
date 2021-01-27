@@ -67,6 +67,7 @@ class GalleryController extends Controller
     public function show(Request $request, Gallery $gallery)
     {
         $images = $gallery->images();
+        dump($images);
         $this->view('galleries.show', compact('gallery', 'images'));
     }
 }

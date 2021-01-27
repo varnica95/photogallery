@@ -28,7 +28,7 @@ class ParameterBag
         if (! empty($files)) {
             $this->resolveImages($files);
         }else{
-            $this->postParameters['image'] = [];
+            $this->postParameters['image'] = "";
         }
 
         $this->routeParameters = $route;
