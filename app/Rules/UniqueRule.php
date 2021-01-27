@@ -44,6 +44,6 @@ class UniqueRule extends Rule
      */
     public function message($field)
     {
-        return 'This ' . $field . ' already exists in database.';
+        return $field . ' already exists in database.';
     }
 }
