@@ -28,4 +28,30 @@ trait Uploadable
             'image' => $path
         ], $this->id);
     }
+
+    /**
+     * @return string
+     */
+    public function defaultImage()
+    {
+        return Config::env('storage.default') . 'gallery_image.png';
+    }
+
+    /**
+     *
+     */
+    public function save()
+    {
+        self::update(get_object_vars($this), $this->id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function destroy()
+    {
+        if(self::delete($this->id)){
+            return unlink($this->image);
+        }
+    }
 }

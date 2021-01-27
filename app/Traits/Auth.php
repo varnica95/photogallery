@@ -28,4 +28,13 @@ trait Auth
 
         return $user;
     }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public static function register(array $data)
+    {
+        return self::create($data);
+    }
 }

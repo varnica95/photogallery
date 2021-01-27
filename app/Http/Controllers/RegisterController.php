@@ -33,7 +33,7 @@ class RegisterController extends Controller
             'password_again' => 'required',
         ]);
 
-        $user = User::create([
+        $user = User::register([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
