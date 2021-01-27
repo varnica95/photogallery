@@ -22,6 +22,9 @@ class ImageController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $noun = array_keys($request->all())[2];
@@ -61,5 +64,10 @@ class ImageController extends Controller
             'galleries' => $request->user()->galleries(),
             'success' => 'Gallery successfully created.'
         ]);
+    }
+
+    public function destroy(Request $request, Image $image)
+    {
+        $image->destroy();
     }
 }
