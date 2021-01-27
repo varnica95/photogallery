@@ -6,9 +6,9 @@
     </div>
 
     <?php foreach ($images as $image): ?>
-    <div class="gallery-card" id="gallery-card-<?php echo $image->id;?>">
+    <div class="gallery-card" id="image-card-<?php echo $image->id;?>">
         <div class="delete-gallery">
-            <form class="delete-gallery-form" id="delete-gallery-<?php echo $image->id;?>" action="/galleries/<?php echo $image->id;?>" method="post">
+            <form class="delete-image-form" id="delete-image-<?php echo $image->id;?>" action="/images/<?php echo $image->id;?>" method="post">
                 <input type="submit" value="X">
             </form>
         </div>
@@ -16,7 +16,7 @@
             <img src="/<?php echo $image->image;?>" alt="">
         </a>
         <div class="gallery-body">
-            <h3><?php echo $image->title;?></h3>
+            <h3 id="image-title-<?php echo $image->id;?>"><?php echo $image->title;?></h3>
         </div>
         <!-- /.gallery-body -->
     </div>
