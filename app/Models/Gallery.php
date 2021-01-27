@@ -44,4 +44,9 @@ class Gallery extends Model
             return unlink($this->image);
         }
     }
+
+    public function images()
+    {
+        return Model::join(__CLASS__, 'inner', Image::class, 'id', 'gallery_id');
+    }
 }
