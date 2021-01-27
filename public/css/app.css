@@ -157,10 +157,15 @@ body{
     margin: 20px auto;
 }
 
-.gallery-wrap .my-gallery{
+.gallery-wrap .my-gallery, .gallery-info{
     font-size: 24px;
     margin-left: 10px;
     text-transform: uppercase;
+}
+
+.gallery-info p i{
+    font-size: 16px;
+    text-transform: none;
 }
 
 .gallery-card{
