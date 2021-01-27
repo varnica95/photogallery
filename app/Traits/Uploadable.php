@@ -51,6 +51,10 @@ trait Uploadable
     public function destroy()
     {
         if(self::delete($this->id)){
+            if ((explode('/', $this->image))[1] === 'default'){
+                return true;
+            }
+
             return unlink($this->image);
         }
     }
