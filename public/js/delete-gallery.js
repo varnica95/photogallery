@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
     $('.delete-gallery-form').click(function (){
+        var id = (($(this).attr('id')).split('-'))[2]
+        var title =  $('#gallery-title-' + id).text();
 
-        if(confirm('Are you sure you want to delete this gallery? All of its content will be removed.')) {
-            deleteGallery()
+        if(confirm('Are you sure you want to delete ' + title + '? All of its content will be removed.')) {
+            deleteGallery(id)
         }else{
             return false;
         }
@@ -11,10 +13,9 @@ $(document).ready(function () {
 
 });
 
-function deleteGallery(){
+function deleteGallery(id){
     $('.delete-gallery-form').on('submit', function (e){
         e.preventDefault();
-        var id = (($(this).attr('id')).split('-'))[2]
 
         $.ajax({
             url : $(this).attr('action') || window.location.pathname,
