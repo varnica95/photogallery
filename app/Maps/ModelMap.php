@@ -5,6 +5,7 @@ namespace App\Maps;
 
 
 use App\Models\Gallery;
+use App\Models\Image;
 use App\Models\User;
 
 class ModelMap
@@ -15,6 +16,7 @@ class ModelMap
     protected static $map = [
         'user' => User::class,
         'gallery' => Gallery::class,
+        'image' => Image::class
     ];
 
     /**
