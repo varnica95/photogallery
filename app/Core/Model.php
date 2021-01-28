@@ -153,7 +153,7 @@ class Model
      * @param $right
      * @return array
      */
-    public static function join($left, $keyword, $right, string $localKey, string $foreignKey, array $data = [])
+    public static function join($left, $keyword, $right, string $localKey, string $foreignKey, int $id = null, array $data = [])
     {
         self::$connection = self::connection();
 
@@ -167,11 +167,47 @@ class Model
 
         $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey}";
 
+        if (! is_null($id)){
+            $sql .= " WHERE {$right}.{$foreignKey} IN ('{$id}')";
+        }
+
         $statement = self::$connection->query($sql);
 
         $statement->setFetchMode(PDO::FETCH_OBJ);
 
         return $statement->fetchAll();
+    }
+
+    /**
+     * @param array $data
+     * @param $left
+     * @param $keyword
+     * @param $right
+     * @return array
+     */
+    public static function joinOne($left, $keyword, $right, string $localKey, string $foreignKey, int $id = null, array $data = [])
+    {
+        self::$connection = self::connection();
+
+        $left = TableMap::resolve($left);
+        $right = TableMap::resolve($right);
+
+        $fields = $left . '.*';
+        if (! empty($data)){
+            $fields = implode(', ', $data);
+        }
+
+        $sql = "SELECT {$fields} FROM {$left} {$keyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey}";
+
+        if (! is_null($id)){
+            $sql .= " WHERE {$right}.{$foreignKey} IN ('{$id}')";
+        }
+
+        $statement = self::$connection->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+
+        return $statement->fetch();
     }
 
     /**
