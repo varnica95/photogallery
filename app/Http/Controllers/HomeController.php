@@ -13,8 +13,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $this->view('home.index', [
-            'user' => $request->user(),
-            'galleries' => $request->user()->galleries()
+            'user' => $request->user()
         ]);
     }
 }

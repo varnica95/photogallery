@@ -1,13 +1,12 @@
 
 
-
 <div class="gallery-wrap">
 
     <div class="my-gallery">
         <p>My galleries</p>
     </div>
 
-    <?php foreach ($galleries as $gallery): ?>
+    <?php foreach ($user->galleries() as $gallery): ?>
     <div class="gallery-card" id="gallery-card-<?php echo $gallery->id;?>">
         <div class="delete-gallery">
             <form class="delete-gallery-form" id="delete-gallery-<?php echo $gallery->id;?>" action="/galleries/<?php echo $gallery->id;?>" method="post">
