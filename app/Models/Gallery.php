@@ -24,6 +24,6 @@ class Gallery extends Model
      */
     public function images()
     {
-        return self::join(Image::class, 'inner', __CLASS__, 'gallery_id', 'id');
+        return self::join(Image::class, 'inner', __CLASS__, 'gallery_id', 'id', $this->id);
     }
 }
