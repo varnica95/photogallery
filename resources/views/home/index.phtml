@@ -7,21 +7,46 @@
     </div>
 
     <?php foreach ($user->galleries() as $gallery): ?>
-    <div class="gallery-card" id="gallery-card-<?php echo $gallery->id;?>">
-        <div class="delete-gallery">
-            <form class="delete-gallery-form" id="delete-gallery-<?php echo $gallery->id;?>" action="/galleries/<?php echo $gallery->id;?>" method="post">
-                <input type="submit" value="X">
-            </form>
+        <div class="gallery-card" id="gallery-card-<?php echo $gallery->id;?>">
+            <div class="delete-gallery">
+                <form class="delete-gallery-form" id="delete-gallery-<?php echo $gallery->id;?>" action="/galleries/<?php echo $gallery->id;?>" method="post">
+                    <input type="submit" value="X">
+                </form>
+            </div>
+            <a href="/galleries/<?php echo $gallery->id;?>/show">
+                <img src="/<?php echo $gallery->image;?>" alt="">
+            </a>
+            <div class="gallery-body">
+                <h3 id="gallery-title-<?php echo $gallery->id;?>"><?php echo $gallery->title;?></h3>
+                <p><?php echo ! empty($gallery->description) ? $gallery->description : 'No description';?></p>
+            </div>
+            <!-- /.gallery-body -->
         </div>
-        <a href="/galleries/<?php echo $gallery->id;?>/show">
-            <img src="/<?php echo $gallery->image;?>" alt="">
-        </a>
-        <div class="gallery-body">
-            <h3 id="gallery-title-<?php echo $gallery->id;?>"><?php echo $gallery->title;?></h3>
-            <p><?php echo ! empty($gallery->description) ? $gallery->description : 'No description';?></p>
-        </div>
-        <!-- /.gallery-body -->
+    <?php endforeach; ?>
+    <!-- /.gallery-card -->
+</div>
+<!-- /.gallery-wrap -->
+
+<div class="other-gallery-wrap">
+
+    <div class="other-galleries">
+        <p>Other galleries</p>
     </div>
+
+    <?php foreach ($galleries as $gallery): ?>
+        <?php if ($gallery->user_id !== $user->id): ?>
+            <div class="gallery-card">
+                <a href="/galleries/<?php echo $gallery->id;?>/show">
+                    <img src="/<?php echo $gallery->image;?>" alt="">
+                </a>
+                <div class="gallery-body">
+                    <p style="margin-bottom: 10px;"><?php echo $gallery->user()->first_name . " " . $gallery->user()->last_name;?> uploaded</p>
+                    <h3><?php echo $gallery->title;?></h3>
+                    <p><?php echo ! empty($gallery->description) ? $gallery->description : 'No description';?></p>
+                </div>
+                <!-- /.gallery-body -->
+            </div>
+        <?php endif; ?>
     <?php endforeach; ?>
     <!-- /.gallery-card -->
 </div>

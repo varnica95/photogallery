@@ -7,11 +7,15 @@
 
     <?php foreach ($images as $image): ?>
     <div class="gallery-card" id="image-card-<?php echo $image->id;?>">
-        <div class="delete-gallery">
-            <form class="delete-image-form" id="delete-image-<?php echo $image->id;?>" action="/images/<?php echo $image->id;?>" method="post">
-                <input type="submit" value="X">
-            </form>
-        </div>
+
+        <?php if($user->id === $gallery->user_id): ?>
+            <div class="delete-gallery">
+                <form class="delete-image-form" id="delete-image-<?php echo $image->id;?>" action="/images/<?php echo $image->id;?>" method="post">
+                    <input type="submit" value="X">
+                </form>
+            </div>
+        <?php endif; ?>
+
         <a href="#">
             <img src="/<?php echo $image->image;?>" alt="">
         </a>
