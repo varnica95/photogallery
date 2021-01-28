@@ -70,6 +70,26 @@ class Model
     }
 
     /**
+     * @return array
+     */
+    public static function all()
+    {
+        self::$connection = self::connection();
+
+        $table = TableMap::resolve(get_called_class());
+
+        $sql = "SELECT * FROM {$table}";
+        $statement = self::$connection->query($sql);
+
+        $statement->execute();
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
+
+        return $statement->fetchAll();
+
+    }
+
+    /**
      * @param int $id
      * @return mixed
      */
