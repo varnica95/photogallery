@@ -6,17 +6,18 @@ namespace App\Models;
 
 use App\Core\Model;
 use App\Traits\Auth;
+use App\Traits\HasRelation;
 
 class User extends Model
 {
-    use Auth;
+    use Auth, HasRelation;
 
     /**
      * @return array
      */
     public function galleries()
     {
-        return self::join(Gallery::class, 'INNER', __CLASS__, 'user_id', 'id', $this->id);
+       return $this->hasMany(Gallery::class);
     }
 
     public function images()

@@ -5,18 +5,19 @@ namespace App\Models;
 
 
 use App\Core\Model;
+use App\Traits\HasRelation;
 use App\Traits\Uploadable;
 
 class Gallery extends Model
 {
-    use Uploadable;
+    use Uploadable, HasRelation;
 
     /**
      * @return array
      */
     public function user()
     {
-        return self::joinOne(User::class, 'inner', __CLASS__, 'id', 'user_id', $this->user_id);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -24,6 +25,6 @@ class Gallery extends Model
      */
     public function images()
     {
-        return self::join(Image::class, 'inner', __CLASS__, 'gallery_id', 'id', $this->id);
+        return $this->hasMany(Image::class);
     }
 }
