@@ -16,7 +16,7 @@ class User extends Model
      */
     public function galleries()
     {
-        return self::join(Gallery::class, 'INNER', __CLASS__, ' user_id', 'id');
+        return self::join(Gallery::class, 'INNER', __CLASS__, 'user_id', 'id', $this->id);
     }
 
     public function images()
