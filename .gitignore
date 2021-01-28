@@ -2,4 +2,5 @@
 
 /.idea/
 /env.php/
-/public/storage/*
+/public/storage/gallery_avatars/*
+/public/storage/gallery_images/*
