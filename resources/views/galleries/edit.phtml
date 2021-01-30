@@ -1,0 +1,44 @@
+<div id="form-div">
+
+    <?php if (isset($success)): ?>
+        <div class="success">
+            <label><?php echo $success; ?></label>
+        </div>
+    <?php endif; ?>
+
+    <div class="errors">
+        <?php if (isset($errors)): ?>
+            <?php foreach($errors as $error): ?>
+                <label><?php echo $error; ?></label>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+
+    <form action="/galleries/<?php echo $gallery->id?>" id="form" method="post" enctype="multipart/form-data">
+
+        <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="<?php echo $gallery->title?>">
+        </div>
+
+        <div class="form-field">
+            <label for="description">Description</label>
+            <textarea
+                name="description"
+                id="description"
+                cols="30"
+            ><?php echo $gallery->description?>
+            </textarea>
+        </div>
+
+        <div class="form-field">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image">
+        </div>
+
+        <div class="form-field">
+            <label for=""></label>
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</div>

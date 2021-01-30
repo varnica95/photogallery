@@ -3,8 +3,15 @@
     <div class="gallery-info">
         <p><?php echo $gallery->title; ?></p>
         <p><i><?php echo ! empty($gallery->description) ? $gallery->description : 'No description';?></i></p>
+
+        <div class="gallery-edit">
+            <a href="/galleries/<?php echo $gallery->id ?>/edit">Edit</a>
+        </div>
     </div>
 
+
+
+    <!-- /.update-gallery -->
     <?php foreach ($images as $image): ?>
     <div class="gallery-card" id="image-card-<?php echo $image->id;?>">
 
