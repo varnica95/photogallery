@@ -76,4 +76,37 @@ class GalleryController extends Controller
         $images = $gallery->images();
         $this->view('galleries.show', compact('user', 'gallery', 'images'));
     }
+
+    /**
+     * @param Request $request
+     * @param Gallery $gallery
+     */
+    public function edit(Request $request, Gallery $gallery)
+    {
+        $this->view('galleries.edit', compact('gallery'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Gallery $gallery
+     */
+    public function update(Request $request, Gallery $gallery)
+    {
+        $gallery->title = $request->title;
+        $gallery->description = $request->description;
+        $gallery->save();
+
+        if (! empty($request->only('image'))){
+            unlink($gallery->image);
+
+            $gallery->image = $request->image;
+            $gallery->uploadTo('gallery_avatars');
+        }
+
+        $this->view('galleries.edit', [
+            'user' => $request->user(),
+            'gallery' => $gallery,
+            'success' => 'Gallery successfully updated.'
+        ]);
+    }
 }
