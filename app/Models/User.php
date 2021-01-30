@@ -20,11 +20,11 @@ class User extends Model
        return $this->hasMany(Gallery::class);
     }
 
+    /**
+     * @return mixed
+     */
     public function images()
     {
-        return self::joinThrough(
-            Gallery::class, Image::class, __CLASS__,
-                'INNER', 'INNER',
-                    'gallery_id', 'id', 'user_id', 'id');
+        return $this->hasManyThrough(Gallery::class, Image::class);
     }
 }

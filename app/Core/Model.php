@@ -217,7 +217,7 @@ class Model
      * @param $right
      * @return array
      */
-    public static function joinThrough($through, $left, $right, $firstKeyword, $secondKeyword, string $localKey, string $foreignKey, string $localThroughKey, string $throughKey, array $data = []): array
+    public static function joinThrough($through, $left, $right, $firstKeyword, $secondKeyword, string $localKey, string $localForeignKey, string $throughLocalKey, string $foreignKey, int $id = null, array $data = []): array
     {
         self::$connection = self::connection();
 
@@ -225,12 +225,18 @@ class Model
         $through = TableMap::resolve($through);
         $right = TableMap::resolve($right);
 
-        $fields = $left . '.*';
+        $fields = '';
         if (! empty($data)){
-            $fields = implode(', ', $data);
+            $fields .= $left . "." . implode(', ', $data);
+        }else{
+            $fields = $left . '.*';
         }
 
-        $sql = "SELECT {$fields} FROM {$left} {$firstKeyword} JOIN {$right} ON {$left}.{$localKey} = {$right}.{$foreignKey} {$secondKeyword} JOIN {$through} ON {$right}.{$localThroughKey} = {$through}.{$throughKey}";
+        $sql = "SELECT {$fields} FROM {$left} {$firstKeyword} JOIN {$through} ON {$left}.{$localKey} = {$through}.{$localForeignKey} {$secondKeyword} JOIN {$right} ON {$through}.{$throughLocalKey} = {$right}.{$foreignKey}";
+
+        if (! is_null($id)){
+            $sql .= " WHERE {$right}.{$foreignKey} IN ('{$id}')";
+        }
 
         $statement = self::$connection->query($sql);
 
@@ -239,6 +245,10 @@ class Model
         return $statement->fetchAll();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function delete($id)
     {
         self::$connection = self::connection();

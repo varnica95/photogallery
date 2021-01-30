@@ -6,6 +6,8 @@ namespace App\Traits;
 use App\Core\Model;
 use App\Maps\ForeignKeyMap;
 use App\Maps\LocalKeyMap;
+use App\Models\Gallery;
+use App\Models\Image;
 
 trait HasRelation
 {
@@ -31,5 +33,21 @@ trait HasRelation
             $class, 'INNER', __CLASS__,
             'id', $foreignKey,
             $this->$foreignKey);
+    }
+
+    /**
+     * @param $through
+     * @param $class
+     * @return mixed
+     */
+    public function hasManyThrough($through, $class)
+    {
+        $localKey = LocalKeyMap::resolve($class);
+        $throughLocalKey = LocalKeyMap::resolve($through);
+
+        return self::joinThrough(
+            $through, $class, __CLASS__,
+            'INNER', 'INNER',
+            $localKey, 'id', $throughLocalKey, 'id', $this->id);
     }
 }
