@@ -91,6 +91,10 @@ class Router
                 $cache[1] = 'destroy';
             }
 
+            if(in_array('PUT', $this->methods[$route], true)){
+                $cache[1] = 'update';
+            }
+
             return $cache;
         }
 
