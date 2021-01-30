@@ -6,7 +6,6 @@ namespace App\Maps;
 
 use App\Models\Gallery;
 use App\Models\Image;
-use App\Models\User;
 
 class LocalKeyMap
 {

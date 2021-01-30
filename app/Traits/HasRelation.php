@@ -6,8 +6,6 @@ namespace App\Traits;
 use App\Core\Model;
 use App\Maps\ForeignKeyMap;
 use App\Maps\LocalKeyMap;
-use App\Models\Gallery;
-use App\Models\Image;
 
 trait HasRelation
 {
