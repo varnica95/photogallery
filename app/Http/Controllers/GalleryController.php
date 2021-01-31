@@ -28,7 +28,7 @@ class GalleryController extends Controller
         $request->validate([
             'title' => ['required', 'min:5'],
             'description' => ['required', 'optional', 'max:200'],
-            'image' => ['image']
+            'image' => ['image', 'optional']
        ]);
 
         $gallery = Gallery::create([

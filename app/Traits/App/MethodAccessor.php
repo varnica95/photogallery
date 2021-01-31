@@ -29,6 +29,7 @@ trait MethodAccessor
     }
 
     /**
+     * This is a POST method
      * @param $route
      * @param $handler
      * @return $this
@@ -40,6 +41,7 @@ trait MethodAccessor
     }
 
     /**
+     * This is a POST method
      * @param $route
      * @param $handler
      * @return $this
