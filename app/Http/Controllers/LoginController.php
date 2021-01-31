@@ -28,26 +28,12 @@ class LoginController extends Controller
            'password' => 'required',
         ]);
 
-        $user = User::login($data);
+        $user = User::login($data, $request->only('remember'));
 
-        if (is_null($user)){
-            $this->view('login.index', [
-                'errors' => [ 'Username does not exist.' ]
-            ]);
-
-            die();
-        }
-
-        if (! $user){
-            $this->view('login.index', [
-                'errors' => [ 'The password you entered is not correct.' ]
-            ]);
-
-            die();
-        }
-
+        if (! is_null($user)){
         $request->setSession('id', $user->id);
         $request->redirect('home');
+        }
     }
 
     /**
