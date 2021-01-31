@@ -6,7 +6,9 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
-$app->get('/home', [HomeController::class, 'index'])->middleware('auth');
+$app->get('/home', [HomeController::class, 'index'])
+    ->middleware('auth')
+    ->middleware('cookie');
 
 $app->post('/register', [RegisterController::class, 'store']);
 $app->get('/register', [RegisterController::class, 'index']);
