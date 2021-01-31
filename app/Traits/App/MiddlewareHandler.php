@@ -17,9 +17,12 @@ trait MiddlewareHandler
         }
 
         if (! $this->exists($middleware = $this->getMiddleware($middleware))){
-            return null;
+            return $this;
         }
-        return $this->item('middleware')->add(new $middleware, $route);
+
+        $this->item('middleware')->add(new $middleware, $route);
+
+        return $this;
     }
 
     protected function getMiddleware($middleware)

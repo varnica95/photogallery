@@ -35,3 +35,13 @@ CREATE TABLE images
     PRIMARY KEY (id),
     FOREIGN KEY (gallery_id) REFERENCES gallery.galleries(id) ON DELETE CASCADE
 );
+
+CREATE TABLE remembers
+(
+    id          INT NOT NULL AUTO_INCREMENT,
+    user_id     INT NOT NULL,
+    hash       VARCHAR(100) NOT NULL,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES gallery.users(id) ON DELETE CASCADE
+);

@@ -4,8 +4,6 @@
 namespace App\Traits;
 
 
-use App\Core\Includes\Config;
-use App\Core\Includes\Cookie;
 use App\Core\Includes\Hash;
 use App\Core\View;
 
@@ -34,10 +32,6 @@ trait Auth
             ]);
 
             return null;
-        }
-
-        if (! is_null($remember)){
-            Cookie::set(Config::env('cookie.name'), Hash::unique(), Config::env('cookie.expiracy'));
         }
 
         unset($user->password);
