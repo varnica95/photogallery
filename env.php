@@ -20,5 +20,9 @@ return [
         'default' => 'storage/default/',
         'gallery_avatars' => 'storage/gallery_avatars/',
         'gallery_images' => 'storage/gallery_images/',
+    ],
+    'cookie' => [
+        'name' => 'token',
+        'expiracy' => 86400 //a day
     ]
 ];
