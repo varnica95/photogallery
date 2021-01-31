@@ -47,6 +47,41 @@ class Model
     }
 
     /**
+     * @param array $data
+     * @return mixed
+     */
+    public static function createHash(array $data)
+    {
+        self::$connection = self::connection();
+
+        $sql = "INSERT INTO remembers (user_id, hash) VALUES (:user_id, :hash)";
+        $statement = self::$connection->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $statement->bindValue(':' . $key, $value);
+        }
+
+        $statement->execute();
+
+        return self::getLastInsertedRow('remembers', self::connection()->lastInsertId());
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public static function getHash($value)
+    {
+        $sql = "SELECT * FROM remembers WHERE user_id = '{$value}' OR hash = '{$value}'";
+        $statement = self::connection()->query($sql);
+
+        $statement->setFetchMode(PDO::FETCH_OBJ);
+
+        return $statement->fetch();
+    }
+
+
+    /**
      * @param $fields
      * @param $table
      * @param $field
@@ -141,6 +176,10 @@ class Model
     {
         $sql = 'SELECT * FROM ' . $table . ' WHERE id = ' . $id;
         $statement = self::$connection->query($sql);
+
+        if ($table === 'remembers'){
+            return $statement->fetch(PDO::FETCH_OBJ);
+        }
 
         $statement->setFetchMode(PDO::FETCH_CLASS, TableMap::getClass($table));
         return $statement->fetch();
@@ -259,6 +298,21 @@ class Model
         $statement = self::$connection->prepare($sql);
 
         $statement->bindValue(':id', $id);
+
+        return $statement->execute();
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public static function deleteHash($id)
+    {
+        self::$connection = self::connection();
+
+        $sql = "DELETE FROM remembers WHERE user_id = {$id}";
+
+        $statement = self::$connection->query($sql);
 
         return $statement->execute();
     }
