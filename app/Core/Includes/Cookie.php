@@ -19,6 +19,15 @@ class Cookie
 
     /**
      * @param $name
+     * @return bool
+     */
+    public static function unset($name)
+    {
+        return self::exists($name) ? setcookie($name, '', time() - 1) : false;
+    }
+
+    /**
+     * @param $name
      * @return false|mixed
      */
     public static function get($name)
