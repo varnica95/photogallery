@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
+use App\Core\Includes\Config;
+use App\Core\Includes\Cookie;
+use App\Core\Model;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -41,7 +44,10 @@ class LoginController extends Controller
      */
     public function out(Request $request)
     {
-        if ($request->user()){
+        if ($user = $request->user()){
+            Model::deleteHash($user->id);
+            Cookie::unset(Config::env('cookie.name'));
+
             $request->destroySession();
             $request->redirect('home');
         }
