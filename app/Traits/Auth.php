@@ -4,7 +4,10 @@
 namespace App\Traits;
 
 
+use App\Core\Includes\Config;
+use App\Core\Includes\Cookie;
 use App\Core\Includes\Hash;
+use App\Core\Model;
 use App\Core\View;
 
 
@@ -32,6 +35,20 @@ trait Auth
             ]);
 
             return null;
+        }
+
+        if (! is_null($remember)){
+            $cookie = Model::getHash($user->id);
+
+            if(! $cookie){
+                $hash = Hash::unique();
+                $cookie = Model::createHash([
+                    'user_id' => $user->id,
+                    'hash' => $hash
+                ]);
+            }
+
+            Cookie::set(Config::env('cookie.name'), $cookie->hash, Config::env('cookie.expiracy'));
         }
 
         unset($user->password);
