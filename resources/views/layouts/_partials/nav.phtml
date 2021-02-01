@@ -13,7 +13,7 @@
         <li>
             <a href="#"><?php if(isset($user)): echo $user->username; endif; ?>*</a>
             <ul>
-                <li><a href="">Options</a></li>
+                <li><a href="/profile/<?php echo $user->id; ?>/show">Profile</a></li>
                 <li><a href="/out">Sign out</a></li>
             </ul>
         </li>
