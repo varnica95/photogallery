@@ -1,0 +1,27 @@
+<div class="profile">
+    <h1>Profile details</h1>
+
+    <div class="profile__field">
+        <span>Full name:</span> <?php echo $user->first_name . " " . $user->last_name; ?>
+    </div>
+
+    <div class="profile__field">
+        <span>Email address:</span> <?php echo $user->email; ?>
+    </div>
+
+    <div class="profile__field">
+        <span>Username:</span> <?php echo $user->username; ?>
+    </div>
+
+    <div class="profile__field" id="profile-uploads-info">
+       <i></i>
+    </div>
+
+    <div class="profile__actions">
+        <a href="#" id="change-password">Change password</a>
+
+        <form action="#" id="delete-account">
+            <input type="submit" value="Delete account">
+        </form>
+    </div>
+</div>

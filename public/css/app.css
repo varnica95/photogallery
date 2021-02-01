@@ -247,3 +247,52 @@ input[type="checkbox"]{
 .gallery-card:hover .delete-gallery{
     display: block;
 }
+
+.profile{
+    width: 400px;
+    margin: 50px auto;
+    padding: 0px 50px;
+}
+
+.profile h1{
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.profile .profile__field{
+    margin-bottom: 1.5rem;
+    font-size: 20px;
+}
+
+.profile .profile__actions{
+    width: auto;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    display: flex;
+}
+
+#change-password {
+    text-decoration: none;
+    margin: auto 0;
+    width: 120px;
+    padding: 10px;
+    background-color: cornflowerblue;
+    border: 2px solid var(--nav-background);
+    color: var(--nav-text-background);
+    cursor: pointer;
+}
+
+#delete-account input[type=submit]{
+    text-decoration: none;
+    margin: auto 0;
+    width: 150px;
+    padding: 10px;
+    background-color: indianred;
+    color: var(--nav-text-background);
+    border: 2px solid var(--nav-background);
+    cursor: pointer;
+}
+
+.profile .profile__field span{
+    font-weight: bold;
+}
