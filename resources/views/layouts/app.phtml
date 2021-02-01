@@ -23,5 +23,11 @@
 <script src="/js/delete-gallery.js"></script>
 <script src="/js/delete-image.js"></script>
 
+<script type="application/javascript">
+    let g = "<?php echo count($user->galleries()); ?>"
+    let i = "<?php echo count($user->images()); ?>"
+</script>
+<script src="/js/pluralizer.js"></script>
+
 </body>
 </html>
