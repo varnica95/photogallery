@@ -4,6 +4,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 
 $app->get('/home', [HomeController::class, 'index'])
@@ -29,3 +30,5 @@ $app->post('/galleries', [GalleryController::class, 'store'])->middleware('auth'
 $app->get('/images/upload', [ImageController::class, 'upload'])->middleware('auth');
 $app->delete('/images/{image}', [ImageController::class, 'destroy'])->middleware('auth');
 $app->post('/images', [ImageController::class, 'store'])->middleware('auth');
+
+$app->get('/profile/{user}/show', [ProfileController::class, 'show'])->middleware('auth');
