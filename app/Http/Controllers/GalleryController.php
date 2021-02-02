@@ -83,7 +83,8 @@ class GalleryController extends Controller
      */
     public function edit(Request $request, Gallery $gallery)
     {
-        $this->view('galleries.edit', compact('gallery'));
+        $user = $request->user();
+        $this->view('galleries.edit', compact('user', 'gallery'));
     }
 
     /**
