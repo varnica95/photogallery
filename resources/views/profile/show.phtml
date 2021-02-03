@@ -18,10 +18,65 @@
     </div>
 
     <div class="profile__actions">
-        <a href="#" id="change-password">Change password</a>
+        <a href="#" id="change-password" onclick="toggle()">Change password</a>
 
         <form action="#" id="delete-account">
             <input type="submit" value="Delete account">
         </form>
     </div>
+
+
+    <div class="form-popup" style="<?php if (isset($errors) || isset($success)) echo "display: block" ?>" id="change-password-popup">
+        <form action="/profile" class="change-password-form" method="post">
+
+            <input
+                    type="password"
+                    style="<?php if (isset($alerts['current_password'])) echo "border: 2px red solid" ?>"
+                    placeholder="Current password"
+                    name="current_password">
+
+            <input
+                    type="password"
+                    style="<?php if (isset($alerts['new_password'])) echo "border: 2px red solid" ?>"
+                    placeholder="New password"
+                    name="new_password">
+
+            <input
+                    type="password"
+                    style="<?php if (isset($alerts['new_password_again'])) echo "border: 2px red solid" ?>"
+                    placeholder="New password, again"
+                    name="new_password_again">
+
+            <input type="submit" value="Change">
+        </form>
+
+        <?php if (isset($success)): ?>
+            <div class="password-success">
+                    <label><?php echo $success; ?></label>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($errors)): ?>
+            <div class="password-errors">
+                    <?php foreach($errors as $error): ?>
+                        <label><?php echo $error; ?></label>
+                    <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
 </div>
+
+
+
+<script type="application/javascript">
+    function toggle(){
+        var form = document.getElementById('change-password-popup')
+
+        if (form.style.display === 'block'){
+            form.style.display = 'none'
+        }else{
+            form.style.display = 'block'
+        }
+    }
+</script>

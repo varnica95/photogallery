@@ -271,7 +271,7 @@ input[type="checkbox"]{
     display: flex;
 }
 
-#change-password {
+#change-password, .profile .form-popup input[type=submit] {
     text-decoration: none;
     margin: auto 0;
     width: 120px;
@@ -280,6 +280,10 @@ input[type="checkbox"]{
     border: 2px solid var(--nav-background);
     color: var(--nav-text-background);
     cursor: pointer;
+}
+
+.profile .form-popup input[type=submit] {
+    float: right;
 }
 
 #delete-account input[type=submit]{
@@ -295,4 +299,41 @@ input[type="checkbox"]{
 
 .profile .profile__field span{
     font-weight: bold;
+}
+
+.profile .form-popup{
+    display: none;
+    max-width: 70%;
+}
+
+.profile .form-popup .password-errors {
+    max-width: 70%;
+    margin-top: 4rem;
+    display: block;
+}
+
+.profile .form-popup .password-errors label{
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    background-color: var(--error-color);
+}
+
+.profile .form-popup .password-success {
+    max-width: 70%;
+    margin-top: 4rem;
+    display: block;
+}
+
+.profile .form-popup .password-success label{
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    background-color: var(--success-color);
+}
+
+.profile .form-popup input:not([type=submit]){
+    margin-bottom: 10px;
 }
