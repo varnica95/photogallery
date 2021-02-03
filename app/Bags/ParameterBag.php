@@ -27,7 +27,7 @@ class ParameterBag
 
         if (! empty($files)) {
             $this->resolveImages($files);
-        }else if(! in_array($_SERVER['PATH_INFO'] ?? '/home', ['/login', '/register'])){
+        }else if(! in_array($_SERVER['PATH_INFO'] ?? '/home', ['/login', '/register', '/profile'])){
            $this->postParameters['image'] = "";
         }
 
