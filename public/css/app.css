@@ -165,7 +165,7 @@ input[type="checkbox"]{
 .other-gallery-wrap{
     width: 1500px;
     height: auto;
-    margin: 350px auto;
+    margin: 450px auto;
 }
 .gallery-wrap .my-gallery, .gallery-info, .other-gallery-wrap .other-galleries{
     font-size: 24px;

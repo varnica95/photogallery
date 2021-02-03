@@ -20,6 +20,11 @@ class Gallery extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function ownedBy($id)
+    {
+        return $this->user_id === $id;
+    }
+
     /**
      * @return array
      */

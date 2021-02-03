@@ -4,9 +4,12 @@
         <p><?php echo $gallery->title; ?></p>
         <p><i><?php echo ! empty($gallery->description) ? $gallery->description : 'No description';?></i></p>
 
+
+        <?php if($gallery->ownedBy($user->id)): ?>
         <div class="gallery-edit">
             <a href="/galleries/<?php echo $gallery->id ?>/edit">Edit</a>
         </div>
+        <?php endif; ?>
     </div>
 
 
