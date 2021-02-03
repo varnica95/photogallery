@@ -20,17 +20,19 @@ $app->get('/login', [LoginController::class, 'index']);
 $app->get('/login/out', [LoginController::class, 'out']);
 
 $app->get('/galleries/create', [GalleryController::class, 'create'])->middleware('auth');
-$app->get('/galleries/{gallery}/show', [GalleryController::class, 'show']);
-$app->get('/galleries/{gallery}/edit', [GalleryController::class, 'edit']);
-$app->put('/galleries/{gallery}/update', [GalleryController::class, 'update']);
-$app->delete('/galleries/{gallery}/destroy', [GalleryController::class, 'destroy']);
+$app->get('/galleries/{gallery}/show', [GalleryController::class, 'show'])->middleware('auth');
+$app->get('/galleries/{gallery}/edit', [GalleryController::class, 'edit'])->middleware('auth');
+$app->put('/galleries/{gallery}/update', [GalleryController::class, 'update'])->middleware('auth');
+$app->delete('/galleries/{gallery}/destroy', [GalleryController::class, 'destroy'])->middleware('auth');
 $app->post('/galleries', [GalleryController::class, 'store'])->middleware('auth');
 
 
 $app->get('/images/upload', [ImageController::class, 'upload'])->middleware('auth');
-$app->delete('/images/{image}', [ImageController::class, 'destroy']);
+$app->delete('/images/{image}', [ImageController::class, 'destroy'])->middleware('auth');
 $app->post('/images', [ImageController::class, 'store'])->middleware('auth');
 
-$app->get('/profile/{user}/show', [ProfileController::class, 'show']);
+$app->get('/profile/{user}/show', [ProfileController::class, 'show'])->middleware('auth');
+$app->delete('/profile/{user}/destroy', [ProfileController::class, 'destroy'])->middleware('auth');
 $app->post('/profile', [ProfileController::class, 'store'])->middleware('auth');
+
 

@@ -16,7 +16,10 @@ trait RouteMatcher
             $regex = preg_replace('/{(.*?)}/', '(?P<\1>[^\.]+)', $regex);
 
             if (preg_match('/^' . $regex . '/', $path, $matched)){
+                self::$matchedRoutes[$route] = $matched[0];
+
                 $this->extractParametersFrom($matched);
+
                 return $route;
             }
         }
@@ -29,8 +32,6 @@ trait RouteMatcher
      */
     protected function extractParametersFrom($matched)
     {
-        array_shift($matched);
-
         foreach ($matched as $key => $value){
             if (is_string($key)) {
                 $this->parameters[$key] = $value;

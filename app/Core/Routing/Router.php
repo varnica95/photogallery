@@ -29,6 +29,11 @@ class Router
     protected $parameters;
 
     /**
+     * @var array
+     */
+    public static $matchedRoutes = [];
+
+    /**
      * @return mixed
      */
     public function getParameters()
@@ -62,6 +67,14 @@ class Router
     {
         $routes = array_keys($this->routes);
         return end($routes);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getMatchedRoute($route)
+    {
+        return self::$matchedRoutes[$route] ?? $route;
     }
 
     /**
