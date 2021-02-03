@@ -11,6 +11,8 @@ class ErrorBag
      */
     protected $errors;
 
+    protected $alerts;
+
     /**
      * @param $field
      * @param $message
@@ -18,6 +20,7 @@ class ErrorBag
     public function add($field, $message)
     {
         $this->errors[] = $message;
+        $this->alerts[$field] = '';
     }
 
     /**
@@ -26,7 +29,8 @@ class ErrorBag
     public function getErrors()
     {
         return [
-            'errors' => $this->errors
+            'errors' => $this->errors,
+            'alerts' => $this->alerts
         ];
     }
 
