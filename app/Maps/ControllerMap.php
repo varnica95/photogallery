@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 
 class ControllerMap
@@ -17,7 +18,8 @@ class ControllerMap
         'register.index' => RegisterController::class,
         'login.index' => LoginController::class,
         'galleries.create' => GalleryController::class,
-        'images.upload' => ImageController::class
+        'images.upload' => ImageController::class,
+        'profile.show' => ProfileController::class
     ];
 
     public static function resolve($class)

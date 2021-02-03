@@ -5,8 +5,10 @@ namespace App\Maps;
 
 
 use App\Rules\BetweenRule;
+use App\Rules\DifferentThanRule;
 use App\Rules\EmailRule;
 use App\Rules\ImageRule;
+use App\Rules\IsUsersPasswordRule;
 use App\Rules\MaxRule;
 use App\Rules\MinRule;
 use App\Rules\NameRule;
@@ -31,6 +33,8 @@ class RuleMap
         'unique' => UniqueRule::class,
         'optional' => OptionalRule::class,
         'image' => ImageRule::class,
+        'is_users_password' => IsUsersPasswordRule::class,
+        'different_than' => DifferentThanRule::class,
     ];
 
     public static function resolve($rule, $options)
