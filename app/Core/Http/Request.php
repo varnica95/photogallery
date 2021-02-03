@@ -88,7 +88,12 @@ class Request
      */
     public function validate(array $rules)
     {
-        $validator = new Validator($this->all());
+        $data = $this->all();
+        if (isset($this->user()->id)){
+            $data = array_merge($this->all(), ['user_id' => $this->user()->id]);
+        }
+
+        $validator = new Validator($data);
 
         $validator->setRules($rules);
 
@@ -101,12 +106,14 @@ class Request
             'title' => 'Title',
             'description' => 'Description',
             'gallery_id' => 'Gallery',
-            'image.type' => 'Image type'
+            'image.type' => 'Image type',
+            'current_password' => 'Current password',
+            'new_password' => 'New password',
+            'new_password_again' => 'New password (retype)'
         ]);
 
         if (! $validator->validate()) {
 
-            $data = $validator->getErrors();
             if ($user = $this->user()){
                 $data = array_merge($validator->getErrors(), ['user' => $user], ['galleries' => $user->galleries()]);
             }
