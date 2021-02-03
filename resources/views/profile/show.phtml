@@ -20,7 +20,7 @@
     <div class="profile__actions">
         <a href="#" id="change-password" onclick="toggle()">Change password</a>
 
-        <form action="#" id="delete-account">
+        <form action="/profile/<?php echo $user->id; ?>/destroy" id="delete-account" method="post">
             <input type="submit" value="Delete account">
         </form>
     </div>

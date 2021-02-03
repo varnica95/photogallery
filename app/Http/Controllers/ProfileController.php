@@ -6,7 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Core\Controller;
 use App\Core\Http\Request;
+use App\Core\Includes\Config;
+use App\Core\Includes\Cookie;
 use App\Core\Includes\Hash;
+use App\Core\Includes\Session;
+use App\Core\Model;
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -37,6 +41,26 @@ class ProfileController extends Controller
         $this->view('profile.show', [
             'user' => $user,
             'success' => 'Password changed successfully'
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param User $user
+     */
+    public function destroy(Request $request, User $user)
+    {
+        if (User::delete($user->id)){
+
+            Model::deleteHash($user->id);
+            Cookie::unset(Config::env('cookie.name'));
+
+            $request->destroySession();
+            $request->redirect('home');
+        }
+
+        $this->view('profile.show', [
+            'user' => $user
         ]);
     }
 }
